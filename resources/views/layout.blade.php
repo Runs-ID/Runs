@@ -238,6 +238,15 @@
 		<!-- Theme Initialization Files -->
 		<script src="{{ asset('storage/styles_S/js/theme.init.js') }}"></script>
 
+		<!-- Sweet Alert 2 -->
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+		<!-- Vue -->
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.min.js"></script>
+
+		<!-- Alertas -->
+		<script src="{{ asset('storage/styles_S/js/toastr/toastr.js') }}"></script>
+
 		@yield('script')
 
 	</body>
