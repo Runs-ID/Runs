@@ -399,17 +399,17 @@
 											<input type="hidden" value="Contact Form" name="subject" id="subject">
 											<div class="form-row">
 												<div class="form-group col-lg-6">
-													<input autocomplete="off" type="text" data-msg-required="Ingrese su nombre." maxlength="100" class="form-control py-2" placeholder="nombre" name="name" id="name" v-model="name_contact" required>
+													<input autocomplete="off" type="text" maxlength="20" class="form-control py-2" placeholder="nombre" v-model="name_contact">
 													<small class="text-danger" v-if="name_error">@{{name_error}}</small>
 												</div>
 												<div class="form-group col-lg-6">
-													<input autocomplete="off" type="email" data-msg-required="Ingrese su correo." data-msg-email="Ingrese su correo." maxlength="100" class="form-control py-2" placeholder="E-mail" name="email" id="email" v-model="email_contact" required>
+													<input autocomplete="off" type="email" maxlength="100" class="form-control py-2" placeholder="E-mail" v-model="email_contact">
 													<small class="text-danger" v-if="email_error">@{{email_error}}</small>
 												</div>
 											</div>
 											<div class="form-row">
 												<div class="form-group col">
-													<textarea maxlength="2000" data-msg-required="Ingrese un mensaje." rows="4" class="form-control" placeholder="Mensaje" name="message" id="message" v-model="message_contact" required></textarea>
+													<textarea maxlength="2000" data-msg-required="Ingrese un mensaje." rows="4" class="form-control" placeholder="Mensaje" v-model="message_contact" required></textarea>
 												</div>
 											</div>
 											<button v-if="sending_form == false" type="button" @click="send_form" class="btn btn-dark text-2 font-weight-bold text-uppercase btn-px-5 py-3 position-absolute" style="bottom: -30px; right: 25px;">Enviar mensaje</button>

@@ -27,6 +27,7 @@
 		<link rel="stylesheet" href="{{ asset('storage/styles_S/vendor/fontawesome-free/css/all.min.css') }}">
 		<link rel="stylesheet" href="{{ asset('storage/styles_S/vendor/animate/animate.min.css') }}">
 		<link rel="stylesheet" href="{{ asset('storage/styles_S/vendor/simple-line-icons/css/simple-line-icons.min.css') }}">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 		<link rel="stylesheet" href="{{ asset('storage/styles_S/vendor/owl.carousel/assets/owl.carousel.min.css') }}">
 		<link rel="stylesheet" href="{{ asset('storage/styles_S/vendor/owl.carousel/assets/owl.theme.default.min.css') }}">
 		<link rel="stylesheet" href="{{ asset('storage/styles_S/vendor/magnific-popup/magnific-popup.min.css') }}">
@@ -53,6 +54,9 @@
 
 		<!-- Librerias -->
 		<script src="{{ asset('storage/styles_S/vendor/modernizr/modernizr.min.js') }}"></script>
+
+		<!--Vue-toast-->
+		<link href="https://cdn.jsdelivr.net/npm/vue-toast-notification/dist/theme-default.css" rel="stylesheet">
 
 	</head>
 	<body data-target="#header" data-spy="scroll" data-offset="100">
@@ -238,11 +242,11 @@
 		<!-- Theme Initialization Files -->
 		<script src="{{ asset('storage/styles_S/js/theme.init.js') }}"></script>
 
-		<!-- Sweet Alert 2 -->
-		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 		<!-- Vue -->
 		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.min.js"></script>
+		<!--Vue toast-->
+		<script src="https://unpkg.com/vue-toasted"></script>
 
 		<!-- Alertas -->
 		<script src="{{ asset('storage/styles_S/js/toastr/toastr.js') }}"></script>
