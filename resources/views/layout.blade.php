@@ -68,7 +68,7 @@
 						<div class="row justify-content-between align-items-center">
 							<div class="col-auto">
 								<div class="py-4">
-									<a href="{{ route('home') }}">
+									<a href="{{ route('home.index') }}">
 										<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="153" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
 											viewBox="0 0 25350 6250"
 											 xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -142,13 +142,16 @@
 															<a class="dropdown-item" data-hash data-hash-offset="95" href="#ourservices">Servicios</a>
 														</li>
 														<li class="dropdown">
+															<a class="dropdown-item" data-hash data-hash-offset="95" href="#prices">Precios</a>
+														</li>
+														<li class="dropdown">
 															<a class="dropdown-item" data-hash data-hash-offset="95" href="#ourprojects">Planes</a>
 														</li>
 														<li class="dropdown">
-															<a class="dropdown-item" data-hash data-hash-offset="95" href="#ourteam">Nuestro equipo</a>
+															<a class="dropdown-item" data-hash data-hash-offset="95" href="#contactus">Contacto</a>
 														</li>
 														<li class="dropdown">
-															<a class="dropdown-item" data-hash data-hash-offset="95" href="#contactus">Contacto</a>
+															<a class="dropdown-item" href="https://soporte.runs.com.ar/" target="_blank">Soporte</a>
 														</li>
 													</ul>
 												</nav>
@@ -178,9 +181,10 @@
 		              <li style="list-style:none;border-bottom: solid grey 1px"><i class="fas fa-chevron-right"></i> <a data-hash data-hash-offset="95" href="#home">Inicio</a></li>
 		              <li style="list-style:none;border-bottom: solid grey 1px"><i class="fas fa-chevron-right"></i> <a data-hash data-hash-offset="95" href="#whoweare">Sobre nosotros</a></li>
 		              <li style="list-style:none;border-bottom: solid grey 1px"><i class="fas fa-chevron-right"></i> <a data-hash data-hash-offset="95" href="#ourservices">Servicios</a></li>
+		              <li style="list-style:none;border-bottom: solid grey 1px"><i class="fas fa-chevron-right"></i> <a data-hash data-hash-offset="95" href="#prices">Precios</a></li>
 		              <li style="list-style:none;border-bottom: solid grey 1px"><i class="fas fa-chevron-right"></i> <a data-hash data-hash-offset="95" href="#ourprojects">Planes</a></li>
-		              <li style="list-style:none;border-bottom: solid grey 1px"><i class="fas fa-chevron-right"></i> <a data-hash data-hash-offset="95" href="#ourteam">Nuestro equipo</a></li>
 		              <li style="list-style:none;border-bottom: solid grey 1px"><i class="fas fa-chevron-right"></i> <a data-hash data-hash-offset="95" href="#contactus">Contacto</a></li>
+		              <li style="list-style:none;border-bottom: solid grey 1px"><i class="fas fa-chevron-right"></i> <a href="https://soporte.runs.com.ar/" target="_blank">Soporte</a></li>
 		            </ul>
 		          </div>
 

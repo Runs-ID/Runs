@@ -141,7 +141,7 @@
 					<div class="container container-xl pb-5 mb-4">
 						<div class="row justify-content-center">
 							<div class="col-lg-9 col-xl-6 text-center" id="ourservices">
-								<span class="text-color-primary custom-font-secondary font-weight-semibold">Servicios</span>
+								<span class="text-color-primary custom-font-secondary font-weight-semibold">SERVICIOS</span>
 								<!--<h2 class="text-color-light font-weight-bold pb-3 mb-3">Why Hire Us?</h2>-->
 								<p class="font-weight-light text-color-light line-height-9 text-4 mb-5">Estos son algunos de los servicios que prestamos, no dudes en consultar por cualquiera de nuestras vías de comunicación, así podrás recibir el asesoramiento ajustado a tus necesidades.</p>
 							</div>
@@ -151,7 +151,7 @@
 
 				<div class="container container-xl custom-negative-margin-top z-index-2 position-relative">
 					<div class="row align-items-center justify-content-center">
-						<div class="col-sm-6 col-lg-3 col-xl-2 order-2 order-xl-1 mb-4 mb-lg-0">
+						<div class="col-sm-6 col-lg-3 col-xl-2 order-2 order-xl-1 mb-4 mb-lg-0 d-none d-md-block">
 							<div class="card border-0 custom-box-shadow-1">
 								<div class="card-body my-4 my-xl-5">
 									<div class="custom-content-rotator">
@@ -161,7 +161,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-6 col-lg-3 col-xl-2 order-3 order-xl-2 mb-4 mb-lg-0">
+						<div class="col-sm-6 col-lg-3 col-xl-2 order-3 order-xl-2 mb-4 mb-lg-0 d-none d-md-block">
 							<div class="card border-0 custom-box-shadow-1">
 								<div class="card-body my-4 my-xl-5">
 									<div class="custom-content-rotator">
@@ -192,7 +192,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-6 col-lg-3 col-xl-2 order-4 order-xl-4 mb-4 mb-sm-0">
+						<div class="col-sm-6 col-lg-3 col-xl-2 order-4 order-xl-4 mb-4 mb-sm-0 d-none d-md-block">
 							<div class="card border-0 custom-box-shadow-1">
 								<div class="card-body my-4 my-xl-5">
 									<div class="custom-content-rotator">
@@ -202,7 +202,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-6 col-lg-3 col-xl-2 order-5 order-xl-5 mb-4 mb-sm-0">
+						<div class="col-sm-6 col-lg-3 col-xl-2 order-5 order-xl-5 mb-4 mb-sm-0 d-none d-md-block">
 							<div class="card border-0 custom-box-shadow-1">
 								<div class="card-body my-4 my-xl-5">
 									<div class="custom-content-rotator">
@@ -214,9 +214,13 @@
 						</div>
 					</div>
 				</div>
-
 				<section class="section section-height-4 bg-light border-0 m-0" id="ourprojects">
-					<div class="container">
+					<div class="container" id="prices">
+						<div class="row mb-5">
+							<div class="col text-center">
+								<span class="text-color-primary custom-font-secondary font-weight-semibold">PRECIOS</span>
+							</div>
+						</div>
 						<div class="pricing-table pricing-table-no-gap mb-4">
 							<div class="col-md-4">
 								<div class="plan">
@@ -296,63 +300,6 @@
 					</div>
 				</section>
 
-				<section class="section section-height-4 border-0 m-0">
-					<div id="ourteam"></div>
-					<div class="container container-xl">
-						<div class="row justify-content-center">
-							<div class="col-lg-9 col-xl-6 text-center">
-								<div class="overflow-hidden">
-									<span class="d-block text-color-primary custom-font-secondary font-weight-semibold appear-animation" data-appear-animation="maskUp">NUESTRO EQUIPO</span>
-								</div>
-								<!--
-								<div class="overflow-hidden mb-3">
-									<h2 class="text-color-dark font-weight-bold pb-2 mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="250">Our Team</h2>
-								</div>
-								<p class="font-weight-light text-color-dark line-height-9 text-4 pb-2 mb-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="450">Lorem ipsum dolor sit amet, consectetur adipiscing eli blandit massa im. Nullam id varius nunc. Vivamus bibendum mex, et faucibus lacus venena. </p>
-								-->
-							</div>
-						</div>
-						<div class="row appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="300">
-							<div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-								<div class="card border-0 custom-box-shadow-1">
-									<svg class="custom-square-1 z-index-0" width="80" height="80">
-										<rect width="80" height="80" fill="none" stroke-width="13" stroke="#000" />
-									</svg>
-									<img class="card-img-top z-index-1" src="{{ asset('storage/img/team/team-4.png') }}" alt="equipo_left" />
-									<div class="card-body">
-										<h4 class="card-title font-weight-bold line-height-3 text-4 mb-0">Mauro</h4>
-										<p class="card-text">Desarrollador web</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 col-lg-4 mb-4 mb-md-0">
-								<div class="card border-0 custom-box-shadow-1">
-									<svg class="custom-square-1 z-index-0" width="80" height="80">
-										<rect width="80" height="80" fill="none" stroke-width="13" stroke="#000" />
-									</svg>
-									<img class="card-img-top z-index-1" src="{{ asset('storage/img/team/team-5.png') }}" alt="equipo_center" />
-									<div class="card-body">
-										<h4 class="card-title font-weight-bold line-height-3 text-4 mb-0">Franco</h4>
-										<p class="card-text">Desarrollador web</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 col-lg-4">
-								<div class="card border-0 custom-box-shadow-1">
-									<svg class="custom-square-1 z-index-0" width="80" height="80">
-										<rect width="80" height="80" fill="none" stroke-width="13" stroke="#000" />
-									</svg>
-									<img class="card-img-top z-index-1" src="{{ asset('storage/img/team/team-6.png') }}" alt="equipo_right" />
-									<div class="card-body">
-										<h4 class="card-title font-weight-bold line-height-3 text-4 mb-0">Edgardo</h4>
-										<p class="card-text">Implementador</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-
 				<section class="section section-height-4 bg-quaternary border-0 m-0">
 					<div id="contactus"></div>
 					<div class="container container-xl">
@@ -409,10 +356,11 @@
 											</div>
 											<div class="form-row">
 												<div class="form-group col">
-													<textarea maxlength="2000" data-msg-required="Ingrese un mensaje." rows="4" class="form-control" placeholder="Mensaje" v-model="message_contact" required></textarea>
+													<textarea maxlength="2000" data-msg-required="Ingrese un mensaje." rows="4" class="form-control" placeholder="Mensaje" v-model="message_contact"></textarea>
+													<small class="text-danger" v-if="message_contact_error">@{{message_contact_error}}</small>
 												</div>
 											</div>
-											<button v-if="sending_form == false" type="button" @click="send_form" class="btn btn-dark text-2 font-weight-bold text-uppercase btn-px-5 py-3 position-absolute" style="bottom: -30px; right: 25px;">Enviar mensaje</button>
+											<button v-if="sending_form == false" type="button" @click="send_form('{{ route('home.store') }}')" class="btn btn-dark text-2 font-weight-bold text-uppercase btn-px-5 py-3 position-absolute" style="bottom: -30px; right: 25px;">Enviar mensaje</button>
 											<button v-if="sending_form == true" type="button" class="btn btn-dark text-2 font-weight-bold text-uppercase btn-px-5 py-3 position-absolute" style="bottom: -30px; right: 25px;">
 												  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando...
 											</button>
