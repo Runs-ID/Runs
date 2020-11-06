@@ -151,6 +151,9 @@
 															<a class="dropdown-item" data-hash data-hash-offset="95" href="#contactus">Contacto</a>
 														</li>
 														<li class="dropdown">
+															<a class="dropdown-item" data-hash data-hash-offset="95" href="{{ route('access.index') }}">Ingresar</a>
+														</li>
+														<li class="dropdown">
 															<a class="dropdown-item" href="https://soporte.runs.com.ar/" target="_blank">Soporte</a>
 														</li>
 													</ul>
@@ -184,6 +187,7 @@
 		              <li style="list-style:none;border-bottom: solid grey 1px"><i class="fas fa-chevron-right"></i> <a data-hash data-hash-offset="95" href="#prices">Precios</a></li>
 		              <li style="list-style:none;border-bottom: solid grey 1px"><i class="fas fa-chevron-right"></i> <a data-hash data-hash-offset="95" href="#ourprojects">Planes</a></li>
 		              <li style="list-style:none;border-bottom: solid grey 1px"><i class="fas fa-chevron-right"></i> <a data-hash data-hash-offset="95" href="#contactus">Contacto</a></li>
+		              <li style="list-style:none;border-bottom: solid grey 1px"><i class="fas fa-chevron-right"></i> <a href="{{ route('access.index') }}" target="_blank">Ingresar</a></li>
 		              <li style="list-style:none;border-bottom: solid grey 1px"><i class="fas fa-chevron-right"></i> <a href="https://soporte.runs.com.ar/" target="_blank">Soporte</a></li>
 		            </ul>
 		          </div>
