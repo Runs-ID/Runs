@@ -38,10 +38,6 @@
 		<link rel="stylesheet" href="{{ asset('storage/styles_S/css/theme-blog.css') }}">
 		<link rel="stylesheet" href="{{ asset('storage/styles_S/css/theme-shop.css') }}">
 
-		<!-- CSS -->
-		<link rel="stylesheet" href="{{ asset('storage/styles_S/vendor/rs-plugin/css/settings.css') }}">
-		<link rel="stylesheet" href="{{ asset('storage/styles_S/vendor/rs-plugin/css/layers.css') }}">
-		<link rel="stylesheet" href="{{ asset('storage/styles_S/vendor/rs-plugin/css/navigation.css') }}">
 		
 		<!-- CSS -->
 		<link rel="stylesheet" href="{{ asset('storage/styles_S/css/demos/demo-architecture-interior.css') }}">
@@ -57,6 +53,7 @@
 
 		<!--Vue-toast-->
 		<link href="https://cdn.jsdelivr.net/npm/vue-toast-notification/dist/theme-default.css" rel="stylesheet">
+		@yield('head')
 
 	</head>
 	<body data-target="#header" data-spy="scroll" data-offset="100">
