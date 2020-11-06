@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AccessController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +23,8 @@ Route::post('/', [HomeController::class, 'store'])->name('home.store');
 //access
 Route::get('access', [AccessController::class, 'index'])->name('access.index');
 Route::post('access/register', [RegisterController::class, 'index'])->name('access.register');
+Route::post('access/login', [LoginController::class, 'index'])->name('access.login');
 //panel-admin
-Route::view('admin', 'admin')->name('admin.index');
+Route::get('admin', function(){
+	return view('admin.home');
+})->name('admin.index');
