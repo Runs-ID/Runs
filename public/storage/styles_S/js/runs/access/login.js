@@ -7,6 +7,12 @@ var login = new Vue({
 		step_1:true,
 		step_2:false,
 		step_3:false,
+		step_finish:false,
+		error:null,
+		check_user:'',
+		token_validate:'',
+		password_change:'',
+		re_password_change:'',
 		//login
 		sending_form:false,
 		user:'',
@@ -51,7 +57,6 @@ var login = new Vue({
 				formData.append('user', this.user);
 				formData.append('password', this.password);
 				this.$http.post(url, formData).then(function(response){
-				console.log(response);
 					if (typeof(response.body.url) != 'undefined') {
 						window.location.href = response.body.url;
 					}else if(typeof(response.body.error) != 'undefined') {
@@ -61,24 +66,121 @@ var login = new Vue({
 				}, response=>{
 					toastr.error('Hubo un problema con su navegador, porfavor reinicielo.');
 					this.sending_form = false;
-					console.log(response);
 				});
 			}else{
 				toastr.error('Formulario incorrecto, verifique que está mal');
-				console.log(response);
 			}
 		},
 		//modal
-		recovery_password_email:function(){
-			this.step_1 = false;
-			this.step_2 = true;
+		find_user:function(url){
+			let validate = true;
+			this.error = null;
+			this.loading_button = true;
+			if (this.check_user.length >= 4) {
+				if (this.check_user.length <= 20) {
+
+				}else{
+					this.error = 'El usuario ingresado es muy largo';
+					validate = false;
+				}
+			}else{
+				this.error = 'El usuario ingresado es muy corto';
+				validate = false;
+			}
+			if (validate) {
+				let formData = new FormData();
+				formData.append('_token', document.getElementById('login_token').value)
+				formData.append('user', this.check_user);
+				this.$http.post(url, formData).then(function(response){
+					if (typeof(response.body.success) != 'undefined') {
+						this.loading_button = false;
+						this.step_1 = false;
+						this.step_2 = true;
+					}else if(typeof(response.body.error) != 'undefined'){
+						this.loading_button = false;
+						this.error = response.body.error;
+					}
+				}, response=>{
+					this.error = 'Hubo un problema con su navegador, porfavor reinicielo.';
+				});
+			}else{
+				this.loading_button = false;				
+			}
 		},
-		recovery_password_token:function(){
-			this.step_2 = false;
-			this.step_3 = true;
+		recovery_password_token:function(url){
+			let validate = true;
+			this.error = null;
+			this.loading_button = true;
+			if (this.token_validate.length >= 4) {
+				if (this.token_validate.length <=20) {
+					
+				}else{
+					this.error = 'El código de verificación es muy largo';
+				}
+			}else{
+				this.error = 'El código de verificación es muy corto';
+			}
+			if (validate) {
+				let formData = new FormData();
+				formData.append('_token', document.getElementById('login_token').value)
+				formData.append('token_validate', this.token_validate);
+				formData.append('user', this.check_user);
+				this.$http.post(url, formData).then(function(response){
+					if (typeof(response.body.success) != 'undefined') {
+						this.loading_button = false;
+						this.step_2 = false;
+						this.step_3 = true;
+					}else if(typeof(response.body.error) != 'undefined'){
+						this.loading_button = false;
+						this.error = response.body.error;
+					}
+				}, response=>{
+					this.error = 'Hubo un problema con su navegador, porfavor reinicielo.';
+				});
+			}
 		},
-		recovery_password_change:function(){
-			alert('falta terminar')
+		recovery_password_change:function(url){
+			let validate = true;
+			this.error = null;
+			this.loading_button = true;
+			if (this.password_change.length >= 4) {
+				if (this.password_change.length <= 20) {
+					if (this.password_change == this.re_password_change) {
+
+					}else{
+						this.error = 'Ambas contraseñas deben coincidir';
+						validate = false;						
+					}
+				}else{
+					this.error = 'La contraseña ingresada es muy larga';
+					validate = false;
+				}
+			}else{
+				this.error = 'La contraseña ingresada es muy corta';
+				validate = false;
+			}
+			if (validate) {
+				let formData = new FormData();
+				formData.append('_token', document.getElementById('login_token').value)
+				formData.append('token_validate', this.token_validate);
+				formData.append('user', this.check_user);
+				formData.append('password_change', this.password_change);
+				this.$http.post(url, formData).then(function(response){
+					console.log(response)
+					if (typeof(response.body.success) != 'undefined') {
+						this.step_3 = false;
+						this.step_finish = true;
+					}else if(typeof(response.body.error) != 'undefined'){
+						this.loading_button = false;
+						this.error = response.body.error;
+					}
+				}, response=>{
+					this.error = 'Hubo un problema con su navegador, porfavor reinicielo.';
+					console.log(response)
+				});
+			}else{
+				this.loading_button = false;				
+			}	
 		}
 	}
 })

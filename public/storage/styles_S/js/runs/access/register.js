@@ -68,7 +68,7 @@ var register = new Vue({
 				validate=false;
 			}
 			if (this.email.length >= 4) {
-				if (this.email.length <= 20) {
+				if (this.email.length <= 100) {
 
 				}else{
 					this.error_email = ('es muy largo');
