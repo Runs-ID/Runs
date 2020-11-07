@@ -37,8 +37,12 @@
 		<link rel="stylesheet" href="{{ asset('storage/styles_S/css/theme-elements.css') }}">
 		<link rel="stylesheet" href="{{ asset('storage/styles_S/css/theme-blog.css') }}">
 		<link rel="stylesheet" href="{{ asset('storage/styles_S/css/theme-shop.css') }}">
-
 		
+		<!-- CSS -->
+		<link rel="stylesheet" href="{{ asset('storage/styles_S/vendor/rs-plugin/css/settings.css') }}">
+		<link rel="stylesheet" href="{{ asset('storage/styles_S/vendor/rs-plugin/css/layers.css') }}">
+		<link rel="stylesheet" href="{{ asset('storage/styles_S/vendor/rs-plugin/css/navigation.css') }}">
+
 		<!-- CSS -->
 		<link rel="stylesheet" href="{{ asset('storage/styles_S/css/demos/demo-architecture-interior.css') }}">
 
