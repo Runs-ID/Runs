@@ -21,8 +21,8 @@ class FindUserController extends Controller
     	if ($request->ajax()) {
     		if ($data = Usuario::where('usuario', $request->user)->first()) {
     			$token_generate = 'runs-'.str_shuffle('1bc4e59hi');
-		    	#$form = new RecoverPasswordMailable(compact('token_generate'));
-		    	#Mail::to($data->email)->send($form);
+		    	$form = new RecoverPasswordMailable(compact('token_generate'));
+		    	Mail::to($data->email)->send($form);
 	    		Usuario::where('usuario', $request->user)
 	    		->update([
 		   			'token' => $token_generate,

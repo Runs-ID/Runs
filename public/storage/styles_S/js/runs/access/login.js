@@ -166,7 +166,6 @@ var login = new Vue({
 				formData.append('user', this.check_user);
 				formData.append('password_change', this.password_change);
 				this.$http.post(url, formData).then(function(response){
-					console.log(response)
 					if (typeof(response.body.success) != 'undefined') {
 						this.step_3 = false;
 						this.step_finish = true;
@@ -176,7 +175,6 @@ var login = new Vue({
 					}
 				}, response=>{
 					this.error = 'Hubo un problema con su navegador, porfavor reinicielo.';
-					console.log(response)
 				});
 			}else{
 				this.loading_button = false;				

@@ -18,7 +18,7 @@ class ChangePasswordController extends Controller
     					'token' => null,
     					'clave' => $new_password,
     				]);
-    				return $request->all();
+    				return ['url' => route('admin.index')];
     			}else{
     				return ['error' => 'Hubo un problema con su navegador, porfavor reinicielo.'];
     			}
