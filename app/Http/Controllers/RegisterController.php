@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\http\Requests\IndexRegister;
+use App\Http\Requests\IndexRegister;
 use App\Models\Usuario;
 
 class RegisterController extends Controller
