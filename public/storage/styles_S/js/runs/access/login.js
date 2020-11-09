@@ -101,6 +101,7 @@ var login = new Vue({
 						this.error = response.body.error;
 					}
 				}, response=>{
+					console.log(response);
 					this.error = 'Hubo un problema con su navegador, porfavor reinicielo.';
 				});
 			}else{

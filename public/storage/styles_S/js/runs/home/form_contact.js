@@ -32,7 +32,12 @@ var form = new Vue({
 			}
 			if (this.email_contact.length >= 4) {
 				if (this.email_contact.length <= 100) {
-
+					if( /(.+)@(.+){2,}\.(.+){2,}/.test(this.email_contact) ){
+						
+					}else{
+						this.email_error = "Email incorrecto";
+						validate = false;
+					}
 				}else{
 					this.email_error = "Éste campo es muy largo";
 					validate = false;
