@@ -60,15 +60,15 @@ var login = new Vue({
 					if (typeof(response.body.url) != 'undefined') {
 						window.location.href = response.body.url;
 					}else if(typeof(response.body.error) != 'undefined') {
-						toastr.error(response.body.error);
+						toastr.error(response.body.error, 6000);
 						this.sending_form = false;
 					}
 				}, response=>{
-					toastr.error('Hubo un problema con su navegador, porfavor reinicielo.');
+					toastr.error('Hubo un problema con su navegador, porfavor reinicielo.', 6000);
 					this.sending_form = false;
 				});
 			}else{
-				toastr.error('Formulario incorrecto, verifique que está mal');
+				toastr.error('Formulario incorrecto, verifique que está mal',6000);
 			}
 		},
 		//modal

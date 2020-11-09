@@ -107,12 +107,12 @@ var register = new Vue({
 						this.sending_form = false;
 					}
 				}, response=>{
-					toastr.error('Hubo un problema con su navegador, porfavor reinicielo.');
+					toastr.error('Hubo un problema con su navegador, porfavor reinicielo.', 6000);
 					this.sending_form = false;
 					console.log(response);
 				})
 			}else{
-				toastr.error('Formulario incorrecto, verifique que está mal');
+				toastr.error('Formulario incorrecto, verifique que está mal', 6000);
 			}
 		}
 	}
