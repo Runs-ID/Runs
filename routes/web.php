@@ -23,7 +23,7 @@ use App\Http\Controllers\ChangePasswordController;
 //home
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::post('/', [HomeController::class, 'store'])->name('home.store');
-//access
+//access-login-register
 Route::get('access', [AccessController::class, 'index'])->name('access.index');
 Route::post('access/register', [RegisterController::class, 'index'])->name('access.register');
 Route::post('access/login', [LoginController::class, 'index'])->name('access.login');
