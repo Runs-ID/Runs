@@ -11,6 +11,12 @@
   <link rel="stylesheet" href="{{ asset('storage/styles_S/vendor/fontawesome-free/css/all.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('storage/styles_S/css/adminlte.min.css') }}">
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+  <!--Vue-toast-->
+  <link href="https://cdn.jsdelivr.net/npm/vue-toast-notification/dist/theme-default.css" rel="stylesheet">
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -46,7 +52,7 @@
         </a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
+        <a class="nav-link" href="{{ route('admin.logout') }}">
           cerrar sesión
         </a>
       </li>
@@ -88,7 +94,7 @@
           <img src="{{ asset('storage/img/example.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">[nombre apellido]</a>
+          <a href="#" class="d-block">{{ $data->nombres }} {{ $data->apellidos }}</a>
         </div>
       </div>
 
@@ -164,6 +170,15 @@
 <script src="{{ asset('storage/styles_S/js/adminlte.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('storage/styles_S/js/demo.js') }}"></script>
+
+  <!-- Vue -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.min.js"></script>
+  <!--Vue toast-->
+  <script src="https://unpkg.com/vue-toasted"></script>
+
+  <!-- Alertas -->
+  <script src="{{ asset('storage/styles_S/js/toastr/toastr.js') }}"></script>
 @yield('script')
 </body>
 </html>

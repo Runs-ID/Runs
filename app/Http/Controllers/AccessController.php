@@ -8,6 +8,11 @@ class AccessController extends Controller
 {
     public function index()
     {
-    	return view('access');
+    	session_start();
+    	if (isset($_SESSION['id'])) {
+    		return redirect()->route('admin.index');
+    	}else{
+    		return view('access');
+    	}
     }
 }

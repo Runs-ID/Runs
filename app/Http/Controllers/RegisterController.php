@@ -14,6 +14,8 @@ class RegisterController extends Controller
 	3- verifico que no haya coincidencia con otro usuario
 	4- encripto la clave
 	5- donde está el token ingresado, actualizo los datos y dejo el token en null
+	6- asigno la variable ID sesion
+	7- redirecciono a la ruta admin.index
 	*/
     public function index(IndexRegister $request)
     {
@@ -28,6 +30,9 @@ class RegisterController extends Controller
 	    				'clave' => $request->password,
 	    				'email' => $request->email,
 	    			]);
+	    			$id = Usuario::select('id')->where('email', $request->email)->first();
+	    			session_start();
+	    			$_SESSION['id'] = $id->id;
 	    			return ['url' => route('admin.index')];
 	    		}else{
 	    			return ['error' => 'El usuario ya exíste, pruebe otro'];
