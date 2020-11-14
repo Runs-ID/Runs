@@ -7,8 +7,9 @@
 </head>
 <body>
 	<h1>Runs contacto - nuevo mensaje</h1>
-	<p><strong>Nombre:</strong>{{$form['name_contact']}}</p>
-	<p><strong>Email:</strong>{{$form['email_contact']}}</p>
-	<p><strong>Mensaje:</strong>{{$form['message_contact']}}</p>
+	<p><strong>Nombre y Apellido: </strong>{{$form['name_contact']}}</p>
+	<p><strong>Teléfono: </strong>{{$form['phone_contact']}}</p>
+	<p><strong>Email: </strong>{{$form['email_contact']}}</p>
+	<p><strong>Mensaje: </strong>{{$form['message_contact']}}</p>
 </body>
 </html>

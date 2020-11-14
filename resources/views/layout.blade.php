@@ -58,6 +58,8 @@
 		<!--Vue-toast-->
 		<link href="https://cdn.jsdelivr.net/npm/vue-toast-notification/dist/theme-default.css" rel="stylesheet">
 
+		@yield('head')
+
 	</head>
 	<body data-target="#header" data-spy="scroll" data-offset="100">
 
