@@ -76,19 +76,29 @@
           <img src="{{ asset('storage/img/user.png') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">[nombre usuario]</a>
+          <a href="#" class="d-block">{{ $data_user->nombres }} {{ $data_user->apellidos }}</a>
         </div>
       </div>
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>
                 Inicio
               </p>
             </a>
           </li>
+          @if(in_array('leer_usuario', $permission))
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Usuarios
+              </p>
+            </a>
+          </li>
+          @endif
         </ul>
       </nav>
     </div>

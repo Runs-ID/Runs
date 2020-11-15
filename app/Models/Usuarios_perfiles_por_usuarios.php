@@ -9,9 +9,11 @@ class Usuarios_perfiles_por_usuarios extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'usuario_id';
+
     public function perfil()
     {
-    	return $this->belongsTo('App\Models\Usuarios_perfiles', 'usuario_id');
+    	return $this->belongsTo('App\Models\Usuarios_perfiles', 'perfiles_id');
     }
 
 }

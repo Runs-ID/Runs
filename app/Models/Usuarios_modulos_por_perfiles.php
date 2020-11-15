@@ -9,10 +9,7 @@ class Usuarios_modulos_por_perfiles extends Model
 {
     use HasFactory;
 
-    public function perfil()
-    {
-    	return $this->belongsTo('App\Models\Usuarios_perfiles', 'perfiles_id');
-    }
+    protected $primaryKey = 'perfiles_id';
 
     public function modulo()
     {

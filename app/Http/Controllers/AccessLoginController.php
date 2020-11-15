@@ -36,8 +36,8 @@ class AccessLoginController extends Controller
 
     public function save_session($user)
     {
-      $user_id = Usuarios_sesiones::select('usuarios_id')->where('usuario', $user)->first();
+      $user_id = Usuarios_sesiones::select('id')->where('usuario', $user)->first();
       session_start();
-      $_SESSION['id'] = $user_id->usuarios_id;
+      $_SESSION['id'] = $user_id->id;
     }
 }
