@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsuariosPerfilPorUsuariosTable extends Migration
+class CreateUsuariosModulosPorPerfilsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateUsuariosPerfilPorUsuariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('usuarios_perfil_por_usuarios', function (Blueprint $table) {
+        Schema::create('usuarios_modulos_por_perfils', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('usuario_id')->unsigned();
+            $table->integer('modulo_id')->unsigned();
             $table->integer('perfil_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('usuario_id')->references('id')->on('usuarios');
-            $table->foreign('perfil_id')->references('id')->on('usuario_perfil');
+            $table->foreign('modulo_id')->references('id')->on('usuarios_modulos');
+            $table->foreign('perfil_id')->references('id')->on('usuario_perfils');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateUsuariosPerfilPorUsuariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuarios_perfil_por_usuarios');
+        Schema::dropIfExists('usuarios_modulos_por_perfils');
     }
 }

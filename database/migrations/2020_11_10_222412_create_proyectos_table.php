@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsuarioPerfilTable extends Migration
+class CreateProyectosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class CreateUsuarioPerfilTable extends Migration
      */
     public function up()
     {
-        Schema::create('usuario_perfil', function (Blueprint $table) {
+        Schema::create('proyectos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('perfil', 70);
-            $table->boolean('activo')->default(1);
+            $table->string('proyecto', 70);
+            $table->text('proyecto_descripcion', 70);
+            $table->tinyInteger('status')->default(1);
+            $table->string('seo', 70);
+            $table->string('precio_total', 70);
+            $table->date('fecha_entrega', 70);
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ class CreateUsuarioPerfilTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuario_perfil');
+        Schema::dropIfExists('proyectos');
     }
 }

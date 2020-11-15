@@ -8,6 +8,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\FindUserController;
 use App\Http\Controllers\TokenValidateController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminChangeProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +25,7 @@ use App\Http\Controllers\ChangePasswordController;
 //home
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::post('/', [HomeController::class, 'store'])->name('home.store');
-//access
+//access-login-register
 Route::get('access', [AccessController::class, 'index'])->name('access.index');
 Route::post('access/register', [RegisterController::class, 'index'])->name('access.register');
 Route::post('access/login', [LoginController::class, 'index'])->name('access.login');
@@ -31,6 +33,6 @@ Route::post('access/Find_User', [FindUserController::class, 'index'])->name('acc
 Route::post('access/Token_Validate', [TokenValidateController::class, 'index'])->name('access.Token_Validate');
 Route::post('access/Change_Password', [ChangePasswordController::class, 'index'])->name('access.Change_Password');
 //panel-admin
-Route::get('admin', function(){
-	return view('admin.home');
-})->name('admin.index');
+Route::get('admin', [AdminController::class, 'index'])->name('admin.index');
+Route::get('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+Route::post('admin/change_profile', [AdminChangeProfileController::class, 'index'])->name('admin.change_profile');
