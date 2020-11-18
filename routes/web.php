@@ -9,9 +9,11 @@ use App\Http\Controllers\AccessLoginController;
 use App\Http\Controllers\RecoveryFirstStepController;
 use App\Http\Controllers\RecoverySecondStepController;
 use App\Http\Controllers\RecoveryThirdStepController;
+use App\Http\Controllers\SaveFormController;
 
 #panel-admin
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DataUserHomeAdmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,5 +36,7 @@ Route::post('access/login', [AccessLoginController::class, 'login'])->name('acce
 Route::post('access/first_step', [RecoveryFirstStepController::class, 'first_step'])->name('admin.first_step');
 Route::post('access/second_step', [RecoverySecondStepController::class, 'second_step'])->name('admin.second_step');
 Route::post('access/third_step', [RecoveryThirdStepController::class, 'third_step'])->name('admin.third_step');
-//panel-admin
+//panel-admin-index
 Route::get('admin', [AdminController::class, 'index'])->name('admin.index');
+Route::post('admin/save_form', [SaveFormController::class, 'save_form'])->name('admin.save_form');
+Route::get('admin/data_user_home_Admin', [DataUserHomeAdmin::class, 'data_user_home_Admin'])->name('admin.data_user_home_Admin');
