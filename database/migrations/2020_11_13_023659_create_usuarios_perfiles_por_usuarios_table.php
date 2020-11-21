@@ -20,8 +20,8 @@ class CreateUsuariosPerfilesPorUsuariosTable extends Migration
             $table->boolean('activo')->default(1);
             $table->timestamps();
 
-            $table->foreign('usuario_id')->references('id')->on('usuarios');
-            $table->foreign('perfiles_id')->references('id')->on('usuarios_perfiles');
+            $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade');
+            $table->foreign('perfiles_id')->references('id')->on('usuarios_perfiles')->onDelete('cascade');
         });
     }
 

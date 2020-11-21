@@ -20,8 +20,8 @@ class CreateUsuariosModulosPorPerfilesTable extends Migration
             $table->boolean('activo')->default(1);
             $table->timestamps();
 
-            $table->foreign('modulos_id')->references('id')->on('usuarios_modulos');
-            $table->foreign('perfiles_id')->references('id')->on('usuarios_perfiles');
+            $table->foreign('modulos_id')->references('id')->on('usuarios_modulos')->onDelete('cascade');
+            $table->foreign('perfiles_id')->references('id')->on('usuarios_perfiles')->onDelete('cascade');
         });
     }
 

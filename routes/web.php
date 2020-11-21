@@ -14,6 +14,10 @@ use App\Http\Controllers\SaveFormController;
 #panel-admin
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DataUserHomeAdmin;
+#panel-admin-users
+use App\Http\Controllers\UsersAdminController;
+use App\Http\Controllers\GetUsersAdminController;
+use App\Http\Controllers\AddNewUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +44,7 @@ Route::post('access/third_step', [RecoveryThirdStepController::class, 'third_ste
 Route::get('admin', [AdminController::class, 'index'])->name('admin.index');
 Route::post('admin/save_form', [SaveFormController::class, 'save_form'])->name('admin.save_form');
 Route::get('admin/data_user_home_Admin', [DataUserHomeAdmin::class, 'data_user_home_Admin'])->name('admin.data_user_home_Admin');
+//panel-admin-users
+Route::get('admin/users', [UsersAdminController::class, 'index'])->name('admin.users_index');
+Route::get('admin/users/get_users_admin_controller', [GetUsersAdminController::class, 'get_users_admin_controller'])->name('admin.get_users_admin_controller');
+Route::post('admin/users/AddNewUserController', [AddNewUserController::class, 'AddNewUserController'])->name('admin.AddNewUserController');

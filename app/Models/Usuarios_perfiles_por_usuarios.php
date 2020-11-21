@@ -9,6 +9,7 @@ class Usuarios_perfiles_por_usuarios extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
     protected $primaryKey = 'usuario_id';
 
     public function perfil()

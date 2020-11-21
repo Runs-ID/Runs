@@ -84,7 +84,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.index') }}" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Inicio
@@ -93,7 +93,7 @@
           </li>
           @if(in_array('leer_usuario', $permission))
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.users_index') }}" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Usuarios

@@ -4,24 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Usuarios;
-use App\Models\Usuarios_perfiles_por_usuarios;
 use App\Models\Usuarios_perfiles;
+use App\Models\Usuarios_perfiles_por_usuarios;
 use App\Models\Usuarios_modulos_por_perfiles;
 use App\Models\Usuarios_modulos;
 
-class AdminController extends Controller
+class UsersAdminController extends Controller
 {
-	public function index()
-	{
+    public function index()
+    {
 		session_start();
 		if (!$this->verify_auth()) {
 			return redirect()->route('access.index');
 		}
 		$data_user = $this->get_data_user();
 		$profile = $this->get_profile_user();
+		$all_profiles = $this->get_all_profiles();
 		$permission = $this->get_permission_user($profile);
-		return view('admin.home', compact('data_user', 'profile', 'permission'));
-	}
+		return view('admin.users', compact('data_user', 'all_profiles', 'profile', 'permission'));
+    }
 
 	public function verify_auth()
 	{
@@ -30,6 +31,11 @@ class AdminController extends Controller
 		}else{
 			return false;
 		}
+	}
+
+	public function get_all_profiles()
+	{
+		return Usuarios_perfiles::all();
 	}
 
 	public function get_data_user()
