@@ -1,185 +1,200 @@
-var login = new Vue({
-	el:"#login",
+var login_form = new Vue({
+	el:"#login_form",
 	data:{
-		//recovery_password modal
-		loading_absolute:true,
-		loading_button:false,
-		step_1:true,
-		step_2:false,
-		step_3:false,
-		step_finish:false,
-		error:null,
-		check_user:'',
-		token_validate:'',
-		password_change:'',
-		re_password_change:'',
-		//login
-		sending_form:false,
+		loading:true,
+		button_loading:false,
+		token:_token,
 		user:'',
-		error_user:null,
+		user_error:false,
 		password:'',
-		error_password:null,
+		password_error:false,
+		//steps
+		button_recovery_password:false,
+		first_step:true,
+		first_step_error:false,
+		second_step:false,
+		Second_step_error:false,
+		third_step:false,
+		third_step_error:false,
+		//recovery
+		email_recovery_password:'',
+		token_recovery_password:'',
+		password_recovery:'',
+		re_password_recovery:'',
+
 	},
-	mounted(){
-		this.loading_absolute = false;
-		document.getElementById('fff').className = 'featured-box featured-box-primary text-left mt-5';
+	mounted:function(){
+		document.getElementById('ffff').className='featured-box featured-box-primary text-left mt-5';
+		this.loading = false;
 	},
 	methods:{
-		//login
 		login_now:function(url){
 			let validate = true;
+			this.button_loading = true;
+			this.user_error = '';
+			this.password_error = '';
 			if (this.user.length >= 4) {
-				if (this.user.length <= 20) {
-
+				if (this.user.length <= 25) {
+					
 				}else{
-					this.error_user = 'es demasiado largo';
-					validate = false;
+					this.user_error = 'demasiado corto';
+					validate = false;					
 				}
 			}else{
-				this.error_user = 'es demasiado corto';
+				this.user_error = 'demasiado corto';
 				validate = false;
 			}
 			if (this.password.length >= 4) {
-				if (this.password.length <= 20) {
-
+				if (this.password.length <= 25) {
+					
 				}else{
-					this.error_password = 'es demasiado largo';
-					validate = false;
+					this.password_error = 'demasiado corto';
+					validate = false;					
 				}
 			}else{
-				this.error_password = 'es demasiado corto';
+				this.password_error = 'demasiado corto';
 				validate = false;
 			}
 			if (validate) {
-				this.sending_form = true;
 				let formData = new FormData();
-				formData.append('_token', document.getElementById('login_token').value)
+				formData.append('_token', this.token.value);
 				formData.append('user', this.user);
 				formData.append('password', this.password);
 				this.$http.post(url, formData).then(function(response){
+					console.log(response.body);
 					if (typeof(response.body.url) != 'undefined') {
+						this.user = '';
+						this.password = '';
 						window.location.href = response.body.url;
-					}else if(typeof(response.body.error) != 'undefined') {
-						toastr.error(response.body.error, 6000);
-						this.sending_form = false;
+					}else if(typeof(response.body.error) != 'undefined'){
+						toastr.error(response.body.error, 3000);
+						this.button_loading = false;
 					}
 				}, response=>{
-					toastr.error('Hubo un problema con su navegador, porfavor reinicielo.', 6000);
-					this.sending_form = false;
+					console.log(response.body);
+					toastr.error('Formulario incorrecto', 3000);
+					this.button_loading = false;
 				});
 			}else{
-				toastr.error('Formulario incorrecto, verifique que está mal',6000);
+				this.button_loading = false;				
 			}
 		},
-		//modal
-		find_user:function(url){
+		first_step_function:function(url){
+			this.button_recovery_password = true;
 			let validate = true;
-			this.error = null;
-			this.loading_button = true;
-			if (this.check_user.length >= 4) {
-				if (this.check_user.length <= 20) {
+			let formData = new FormData();
+			formData.append('email_recovery_password', this.email_recovery_password);
+			formData.append('_token', this.token.value);
+			if (this.email_recovery_password.length >= 4) {
+				if (this.email_recovery_password.length <= 100) {
 
 				}else{
-					this.error = 'El usuario ingresado es muy largo';
 					validate = false;
+					this.first_step_error = 'demasiado largo';
 				}
 			}else{
-				this.error = 'El usuario ingresado es muy corto';
 				validate = false;
+				this.first_step_error = 'demasiado corto';
 			}
 			if (validate) {
-				let formData = new FormData();
-				formData.append('_token', document.getElementById('login_token').value)
-				formData.append('user', this.check_user);
 				this.$http.post(url, formData).then(function(response){
 					if (typeof(response.body.success) != 'undefined') {
-						this.loading_button = false;
-						this.step_1 = false;
-						this.step_2 = true;
-					}else if(typeof(response.body.error) != 'undefined'){
-						this.loading_button = false;
-						this.error = response.body.error;
+						this.first_step = false;
+						this.second_step = true;
+						this.button_recovery_password = false;		
+					}else if (typeof(response.body.error) != 'undefined') {
+						toastr.error(response.body.error, 6000);
+						this.button_recovery_password = false;
 					}
 				}, response=>{
-					console.log(response);
-					this.error = 'Hubo un problema con su navegador, porfavor reinicielo.';
+					toastr.error('No se pudo enviar el formulario, reintentelo más tarde');
 				});
 			}else{
-				this.loading_button = false;				
+				toastr.error('Formulario incorrecto', 3000);
+				this.button_recovery_password = false;		
 			}
 		},
-		recovery_password_token:function(url){
+		second_Step_function:function(url){
+			this.button_recovery_password = true;
 			let validate = true;
-			this.error = null;
-			this.loading_button = true;
-			if (this.token_validate.length >= 4) {
-				if (this.token_validate.length <=20) {
-					
+			let formData = new FormData();
+			formData.append('token_recovery_password', this.token_recovery_password);
+			formData.append('email_recovery_password', this.email_recovery_password);
+			formData.append('_token', this.token.value);
+			if (this.token_recovery_password.length >= 4) {
+				if (this.token_recovery_password.length <= 15) {
+
 				}else{
-					this.error = 'El código de verificación es muy largo';
+					validate = false;
+					this.second_step_error = 'demasiado largo';
 				}
 			}else{
-				this.error = 'El código de verificación es muy corto';
+				validate = false;
+				this.second_step_error = 'demasiado corto';
 			}
 			if (validate) {
-				let formData = new FormData();
-				formData.append('_token', document.getElementById('login_token').value)
-				formData.append('token_validate', this.token_validate);
-				formData.append('user', this.check_user);
 				this.$http.post(url, formData).then(function(response){
 					if (typeof(response.body.success) != 'undefined') {
-						this.loading_button = false;
-						this.step_2 = false;
-						this.step_3 = true;
-					}else if(typeof(response.body.error) != 'undefined'){
-						this.loading_button = false;
-						this.error = response.body.error;
+						this.second_step = false;
+						this.third_step = true;
+						this.button_recovery_password = false;		
+					}else if (typeof(response.body.error) != 'undefined') {
+						toastr.error(response.body.error, 6000);
+						this.button_recovery_password = false;
 					}
 				}, response=>{
-					this.error = 'Hubo un problema con su navegador, porfavor reinicielo.';
+					toastr.error('No se pudo enviar el formulario, reintentelo más tarde', 6000);
 				});
+			}else{
+				toastr.error('Formulario incorrecto', 3000);
+				this.button_recovery_password = false;		
 			}
 		},
-		recovery_password_change:function(url){
+		third_Step_function:function(url){
+			this.button_recovery_password = true;
 			let validate = true;
-			this.error = null;
-			this.loading_button = true;
-			if (this.password_change.length >= 4) {
-				if (this.password_change.length <= 20) {
-					if (this.password_change == this.re_password_change) {
+			let formData = new FormData();
+			formData.append('token_recovery_password', this.token_recovery_password);
+			formData.append('email_recovery_password', this.email_recovery_password);
+			formData.append('password_recovery', this.password_recovery);
+			formData.append('_token', this.token.value);
+
+			if (this.password_recovery == this.re_password_recovery) {
+				if (this.password_recovery.length >= 4) {
+					if (this.password_recovery.length <=20) {
 
 					}else{
-						this.error = 'Ambas contraseñas deben coincidir';
-						validate = false;						
+						validate = false;
+						this.third_step_error = 'demasiado largo';
 					}
 				}else{
-					this.error = 'La contraseña ingresada es muy larga';
 					validate = false;
+					this.third_step_error = 'demasiado corto';	
 				}
 			}else{
-				this.error = 'La contraseña ingresada es muy corta';
 				validate = false;
+				this.third_step_error = 'ambas contraseñas deben coincidir';				
 			}
+
+
 			if (validate) {
-				let formData = new FormData();
-				formData.append('_token', document.getElementById('login_token').value)
-				formData.append('token_validate', this.token_validate);
-				formData.append('user', this.check_user);
-				formData.append('password_change', this.password_change);
 				this.$http.post(url, formData).then(function(response){
 					if (typeof(response.body.success) != 'undefined') {
-						this.step_3 = false;
-						this.step_finish = true;
-					}else if(typeof(response.body.error) != 'undefined'){
-						this.loading_button = false;
-						this.error = response.body.error;
+						toastr.success('Contraseña cambiada con éxito')
+						this.button_recovery_password = false;
+						this.first_step = true;
+						this.third_step = false;
+					}else if (typeof(response.body.error) != 'undefined') {
+						toastr.error(response.body.error, 6000);
+						this.button_recovery_password = false;
 					}
 				}, response=>{
-					this.error = 'Hubo un problema con su navegador, porfavor reinicielo.';
+					toastr.error('No se pudo enviar el formulario, reintentelo más tarde', 6000);
 				});
 			}else{
-				this.loading_button = false;				
-			}	
+				toastr.error('Formulario incorrecto', 3000);
+				this.button_recovery_password = false;		
+			}
 		}
 	}
 })

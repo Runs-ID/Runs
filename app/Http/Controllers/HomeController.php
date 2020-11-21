@@ -16,7 +16,9 @@ class HomeController extends Controller
     {
     	if ($request->ajax()) {
 	    	$form = new ContactMailable($request->all());
-	    	Mail::to('mauroasoriano22@gmail.com')->send($form);
+            Mail::to('mauroasoriano22@gmail.com')->send($form);
+            Mail::to('francoesoriano@gmail.com')->send($form);
+            Mail::to('permucel@gmail.com')->send($form);
 	    	$success = "true";
 	    	return compact('success');
     	}

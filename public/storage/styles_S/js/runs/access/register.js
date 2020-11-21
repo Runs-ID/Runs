@@ -1,118 +1,111 @@
-var register = new Vue({
-	el:"#register",
+var register_form = new Vue({
+	el:"#register_form",
 	data:{
-		//required
-		loading_absolute:true,
-		sending_form:false,
-		//info
-		user:'',
-		error_user:null,
-		token:'',
-		error_token:null,
-		password:'',
-		error_password:null,
-		re_password:'',
-		error_re_password:null,
+		loading:true,
+		button_loading:false,
 		email:'',
-		error_email:null,
+		email_error:false,
+		token:'',
+		token_error:false,
+		password:'',
+		password_error:false,
+		user:'',
+		user_error:false,
+		re_password:'',
+		re_password_error:false,
 	},
-	mounted(){
-		this.loading_absolute = false;
-		document.getElementById('ffff').className = 'featured-box featured-box-primary text-left mt-5';
+	mounted:function(){
+		document.getElementById('fff').className = 'featured-box featured-box-primary text-left mt-5';
+		this.loading = false;
 	},
 	methods:{
-		register_now(url){
-			this.error_user=null;
-			this.error_token=null;
-			this.error_password=null;
-			this.error_re_password=null;
-			this.error_email=null;
-			let validate = true;
-			if (this.user.length >= 4) {
-				if (this.user.length <= 20) {
-					if (this.user.match(/^[0-9a-zA-Z]+$/)) {
-
-					}else{
-						this.error_user = ('solo letras y números');
-						validate=false;						
-					}
-				}else{
-					this.error_user = ('es muy largo');
-					validate=false;
-				}
-			}else{
-				this.error_user = ('es muy corto');
-				validate=false;
-			}
-			if (this.password.length >= 4) {
-				if (this.password.length <= 20) {
-					if (this.user.match(/^[0-9a-zA-Z]+$/)) {
-						if (this.password == this.re_password) {
-
-						}else{
-							this.error_password = ('ambas contraseñas no coinciden');
-							validate=false;
-							this.password = '';
-							this.re_password = '';									
-						}
-					}else{
-						this.error_password = ('solo letras y números');
-						validate=false;						
-					}					
-				}else{
-					this.error_password = ('es muy largo');
-					validate=false;
-				}
-			}else{
-				this.error_password = ('es muy corto');
-				validate=false;
-			}
+		register_now:function(url){
+			this.email_error = '';
+			this.token_error = '';
+			this.user_error = '';
+			this.password_error = '';
+			this.re_password_error = '';
+			this.button_loading = true;
+			let validation = true;
 			if (this.email.length >= 4) {
 				if (this.email.length <= 100) {
 
 				}else{
-					this.error_email = ('es muy largo');
-					validate=false;
+					this.email_error = 'es demasiado largo';
+					validation = false;
 				}
 			}else{
-				this.error_email = ('es muy corto');
-				validate=false;
+				this.email_error = 'es muy corto';
+				validation = false;
 			}
 			if (this.token.length >= 4) {
-				if (this.token.length <= 100) {
+				if (this.token.length <= 15) {
 
 				}else{
-					this.error_token = ('es muy largo');
-					validate=false;
+					this.token_error = 'es demasiado largo';
+					validation = false;
 				}
 			}else{
-				this.error_token = ('es muy corto');
-				validate=false;
+				this.token_error = 'es muy corto';
+				validation = false;
 			}
+			if (this.password.length >= 4) {
+				if (this.password.length <= 25) {
+					if (this.password == this.re_password) {
 
-			if (validate) {
-				this.sending_form = true;
-				let formData = new FormData();
+					}else{
+						this.password = '';
+						this.re_password = '';
+						this.password_error = 'ambas claves deben coincidir';
+						validation = false;
+					}
+				}else{
+					this.password_error = 'es demasiado largo';
+					validation = false;
+				}
+			}else{
+				this.password_error = 'es muy corto';
+				validation = false;
+			}
+			if (this.user.length >= 4) {
+				if (this.user.length <= 25) {
+
+				}else{
+					this.user_error = 'es demasiado largo';
+					validation = false;
+				}
+			}else{
+				this.user_error = 'es muy corto';
+				validation = false;
+			}
+			if (validation) {
+				let formData = new FormData;
 				formData.append('_token', document.getElementById('register_token').value);
-				formData.append('user', this.user);
-				formData.append('token', this.token);
-				formData.append('password', this.password);
 				formData.append('email', this.email);
-				this.$http.post(url,formData).then(function(response){
-					console.log(response);
+				formData.append('token', this.token);
+				formData.append('user', this.user);
+				formData.append('password', this.password);
+				this.$http.post(url, formData).then(function(response){
+					console.log(response.body.message);
 					if (typeof(response.body.url) != 'undefined') {
+						this.email = '';
+						this.token = '';
+						this.user = '';
+						this.password = '';
+						this.re_password = '';
 						window.location.href = response.body.url;
-					}else if(typeof(response.body.error) != 'undefined') {
-						toastr.error(response.body.error);
-						this.sending_form = false;
+					}else if (typeof(response.body.error) != 'undefined') {
+						this.button_loading = false;
+						toastr.error(response.body.error, 5000);
 					}
 				}, response=>{
-					toastr.error('Hubo un problema con su navegador, porfavor reinicielo.', 6000);
-					this.sending_form = false;
-					console.log(response);
+					toastr.info('No se pudo completar el registro, porfavor reinicie la página y reintentelo', 5000);
+					this.button_loading = false;
+					console.log(response.body.message);
 				})
 			}else{
-				toastr.error('Formulario incorrecto, verifique que está mal', 6000);
+				toastr.error('Formulario incorrecto, verifique los errores', 5000);
+				this.button_loading = false;
 			}
 		}
 	}

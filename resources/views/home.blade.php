@@ -345,18 +345,22 @@
 											<input type="hidden" value="{{ csrf_token() }}" id="_token">
 											<input type="hidden" value="Contact Form" name="subject" id="subject">
 											<div class="form-row">
-												<div class="form-group col-lg-6">
-													<input autocomplete="off" type="text" maxlength="20" class="form-control py-2" placeholder="nombre" v-model="name_contact">
+												<div class="form-group col-lg-12">
+													<input autocomplete="off" type="text" maxlength="20" class="form-control py-2" placeholder="Nombres y Apellido" v-model="name_contact">
 													<small class="text-danger" v-if="name_error">@{{name_error}}</small>
 												</div>
-												<div class="form-group col-lg-6">
+												<div class="form-group col-lg-12">
 													<input autocomplete="off" type="email" maxlength="100" class="form-control py-2" placeholder="E-mail" v-model="email_contact">
 													<small class="text-danger" v-if="email_error">@{{email_error}}</small>
+												</div>
+												<div class="form-group col-lg-12">
+													<input autocomplete="off" type="text" maxlength="100" class="form-control py-2" placeholder="Teléfono" v-model="phone_contact">
+													<small class="text-danger" v-if="phone_error">@{{phone_error}}</small>
 												</div>
 											</div>
 											<div class="form-row">
 												<div class="form-group col">
-													<textarea maxlength="2000" data-msg-required="Ingrese un mensaje." rows="4" class="form-control" placeholder="Mensaje" v-model="message_contact"></textarea>
+													<textarea maxlength="2000" data-msg-required="Ingrese un mensaje." rows="2" class="form-control" placeholder="Mensaje" v-model="message_contact"></textarea>
 													<small class="text-danger" v-if="message_contact_error">@{{message_contact_error}}</small>
 												</div>
 											</div>

@@ -59,6 +59,17 @@
 		<link href="https://cdn.jsdelivr.net/npm/vue-toast-notification/dist/theme-default.css" rel="stylesheet">
 		@yield('head')
 
+		@yield('head')
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VJR1LXJ586"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VJR1LXJ586');
+</script>
+
 	</head>
 	<body data-target="#header" data-spy="scroll" data-offset="100">
 
