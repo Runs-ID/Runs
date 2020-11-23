@@ -7,40 +7,28 @@ use App\Models\Usuarios;
 use App\Models\Usuarios_perfiles;
 use App\Models\Usuarios_perfiles_por_usuarios;
 
-class AddNewUserController extends Controller
+class DeleteUserController extends Controller
 {
-    public function AddNewUserController(Request $request)
+    public function DeleteUserController(Request $request)
     {
     	if (!$request->ajax()) {
     		return back();
     	}
-    	$this->save_new_user($request);
-    	$this->save_profile_user($request);
-    	$users = $this->get_all_users();
-    	return ['success' => 'El usuario se creó con éxito', 'users' => $users];
+    	if ($this->delete_user($request)) {
+    		$users = $this->get_all_users();
+    		return ['success' => 'El usuario se eliminó con éxito', 'users' => $users];
+    	}else{
+    		return ['error' => 'El usuario ya lo han eliminado, reinicie la página'];
+    	}
     }
 
-    public function save_new_user($request)
+    public function delete_user($request)
     {
-    	Usuarios::create([
-    		'nombres' => null,
-    		'apellidos' => null,
-    		'dni' => null,
-    		'telefono' => null,
-    		'email' => null,
-    		'token' => $request->token,
-    	]);
-    }
-
-    public function save_profile_user($request)
-    {
-    	//get-id
-    	$id = Usuarios::select('id')->where('token', $request->token)->value('id');
-    	//create
-    	Usuarios_perfiles_por_usuarios::create([
-    		'usuario_id' => $id,
-    		'perfiles_id' => $request->profile,
-    	]);
+    	if (Usuarios::destroy($request->id)) {
+    		return true;
+    	}else{
+    		return false;
+    	}
     }
 
     public function get_all_users()

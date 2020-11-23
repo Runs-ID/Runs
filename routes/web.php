@@ -18,6 +18,7 @@ use App\Http\Controllers\DataUserHomeAdmin;
 use App\Http\Controllers\UsersAdminController;
 use App\Http\Controllers\GetUsersAdminController;
 use App\Http\Controllers\AddNewUserController;
+use App\Http\Controllers\DeleteUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,3 +49,4 @@ Route::get('admin/data_user_home_Admin', [DataUserHomeAdmin::class, 'data_user_h
 Route::get('admin/users', [UsersAdminController::class, 'index'])->name('admin.users_index');
 Route::get('admin/users/get_users_admin_controller', [GetUsersAdminController::class, 'get_users_admin_controller'])->name('admin.get_users_admin_controller');
 Route::post('admin/users/AddNewUserController', [AddNewUserController::class, 'AddNewUserController'])->name('admin.AddNewUserController');
+Route::post('admin/users/DeleteUserController', [DeleteUserController::class, 'DeleteUserController'])->name('admin.DeleteUserController');

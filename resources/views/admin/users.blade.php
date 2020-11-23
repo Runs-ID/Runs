@@ -21,30 +21,34 @@
               <tr>
                 <th>Perfil</th>
                 <th>Nombres</th>
-                <th>Apellidos</th>
+                <th>Estado</th>
                 <th>DNI</th>
                 <th>Teléfono</th>
                 <th>Email</th>
               </tr>
               </thead>
               <tbody>
-              <tr v-for="user in users">
-                <input type="hidden" :value="user.id">
-                <td>@{{user.perfil}}</td>
-                <td>@{{user.nombres ? user.nombres : 'Sin completar'}}</td>
-                <td>@{{user.apellidos ? user.apellidos : 'Sin completar'}}</td>
-                <td>@{{user.dni ? user.dni : 'Sin completar'}}</td>
-                <td>@{{user.telefono ? user.telefono : 'Sin completar'}}</td>
-                <td>@{{user.email ? user.email : 'Sin completar'}}</td>
-                <td>
-                  @if(in_array('editar_usuario', $permission))
-                  <button class="btn btn-sm btn-warning text-white"><i class="fas fa-pencil"></i></button>
-                  @endif
-                  @if(in_array('eliminar_usuario', $permission))
-                  <button class="btn btn-sm btn-danger"><i class="fas fa-minus"></i></button>
-                  @endif
-                </td>
-              </tr>
+                <form>
+                <input type="hidden" value="{{ csrf_token() }}" id="_token">
+                <tr v-for="(user,i) in users">
+                  <input type="hidden" :value="user.id">
+                  <td>@{{user.perfil}}</td>
+                  <td>@{{user.nombres ? user.nombres : 'Sin completar'}}</td>
+                  <td v-if="user.activo == 1" class="text-success">Activo</td>
+                  <td v-if="user.activo == 0" class="text-danger">Inactivo</td>
+                  <td>@{{user.dni ? user.dni : 'Sin completar'}}</td>
+                  <td>@{{user.telefono ? user.telefono : 'Sin completar'}}</td>
+                  <td>@{{user.email ? user.email : 'Sin completar'}}</td>
+                  <td>
+                    @if(in_array('editar_usuario', $permission))
+                      @include('admin.components.edit_user')
+                    @endif
+                    @if(in_array('eliminar_usuario', $permission))
+                      @include('admin.components.delete_user')
+                    @endif
+                  </td>
+                </tr>
+                </form>
               </tbody>
             </table>
           </div>

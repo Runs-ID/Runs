@@ -22,7 +22,7 @@ class GetUsersAdminController extends Controller
     	session_start();
 
     	$perfiles_id = Usuarios_perfiles::select('perfil')->pluck('perfil');
-    	$users =  Usuarios::select('id', 'nombres', 'apellidos', 'dni', 'telefono', 'email')->get();
+    	$users =  Usuarios::select('id', 'nombres', 'apellidos', 'dni', 'telefono', 'email', 'activo')->get();
     	foreach ($users as $user) {
     		$data['id'] = $user->id;
     		$data['nombres'] = $user->nombres;
@@ -33,6 +33,7 @@ class GetUsersAdminController extends Controller
     		$data['perfil'] = Usuarios_perfiles::select()
     						->where('id', Usuarios_perfiles_por_usuarios::select('perfiles_id')->where('usuario_id', $user->id)->value('perfiles_id'))
     						->value('perfil');
+            $data['activo'] = $user->activo;
     		$data_general[] = $data;
     	}
 		return $data_general;
