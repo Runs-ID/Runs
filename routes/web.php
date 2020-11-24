@@ -19,6 +19,7 @@ use App\Http\Controllers\UsersAdminController;
 use App\Http\Controllers\GetUsersAdminController;
 use App\Http\Controllers\AddNewUserController;
 use App\Http\Controllers\DeleteUserController;
+use App\Http\Controllers\ModifyUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,3 +51,4 @@ Route::get('admin/users', [UsersAdminController::class, 'index'])->name('admin.u
 Route::get('admin/users/get_users_admin_controller', [GetUsersAdminController::class, 'get_users_admin_controller'])->name('admin.get_users_admin_controller');
 Route::post('admin/users/AddNewUserController', [AddNewUserController::class, 'AddNewUserController'])->name('admin.AddNewUserController');
 Route::post('admin/users/DeleteUserController', [DeleteUserController::class, 'DeleteUserController'])->name('admin.DeleteUserController');
+Route::post('admin/users/ModifyUserController', [ModifyUserController::class, 'ModifyUserController'])->name('admin.ModifyUserController');
