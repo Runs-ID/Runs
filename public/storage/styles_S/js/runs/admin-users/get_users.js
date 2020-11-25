@@ -46,11 +46,11 @@ var get_users = new Vue({
 			formData.append('_token', document.getElementById('_token').value);
 			formData.append('id', id);
 			formData.append('profile_id', this.edit_profile);
-			formData.append('names', this.edit_names);
-			formData.append('last_names', this.edit_last_names);
-			formData.append('dni', this.edit_dni);
-			formData.append('phone', this.edit_phone);
-			formData.append('email', this.edit_email);
+			formData.append('names', this.edit_names ? this.edit_names : '');
+			formData.append('last_names', this.edit_last_names ? this.edit_last_names : '');
+			formData.append('dni', this.edit_dni ? this.edit_dni : '');
+			formData.append('phone', this.edit_phone ? this.edit_phone : '');
+			formData.append('email', this.edit_email ? this.edit_email : '');
 			formData.append('status', this.edit_status);
 			this.$http.post(url, formData).then(function(response){
 				console.log(response.body);
@@ -59,8 +59,10 @@ var get_users = new Vue({
 					toastr.success(response.body.success);
 				}
 			}, response=>{
-				console.log(response.body.message);
-				toastr.error('No se pudo modificar')
+				if (response.status == 419) {
+					toastr.error('No se pudo modificar, reinicie la página');
+				}
+				toastr.error('No se pudo modificar');
 			})
 		}
 	}

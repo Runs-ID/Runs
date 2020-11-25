@@ -22,10 +22,10 @@ class ModifyUserController extends Controller
     public function modify_user($request)
     {
     	Usuarios::where('id', $request->id)->update([
-    		'nombres' => $request->names ? $request->names : 'Sin completar',
-    		'apellidos' => $request->last_names ? $request->last_names : 'Sin completar',
-    		'dni' => $request->dni ? $request->dni : 'Sin completar',
-    		'telefono' => $request->phone ? $request->phone : 'Sin completar',
+    		'nombres' => $request->names ? $request->names : null,
+    		'apellidos' => $request->last_names ? $request->last_names : null,
+    		'dni' => $request->dni ? $request->dni : null,
+    		'telefono' => $request->phone ? $request->phone : null,
     		'email' => $request->email ? $request->email : null,
     		'activo' => $request->status,
     	]);
