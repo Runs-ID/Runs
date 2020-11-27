@@ -13,6 +13,7 @@ use App\Http\Controllers\SaveFormController;
 
 #panel-admin
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\DataUserHomeAdmin;
 #panel-admin-users
 use App\Http\Controllers\UsersAdminController;
@@ -44,6 +45,7 @@ Route::post('access/second_step', [RecoverySecondStepController::class, 'second_
 Route::post('access/third_step', [RecoveryThirdStepController::class, 'third_step'])->name('admin.third_step');
 //panel-admin-index
 Route::get('admin', [AdminController::class, 'index'])->name('admin.index');
+Route::get('admin/LogoutController', [LogoutController::class, 'LogoutController'])->name('admin.LogoutController');
 Route::post('admin/save_form', [SaveFormController::class, 'save_form'])->name('admin.save_form');
 Route::get('admin/data_user_home_Admin', [DataUserHomeAdmin::class, 'data_user_home_Admin'])->name('admin.data_user_home_Admin');
 //panel-admin-users

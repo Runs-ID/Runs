@@ -57,6 +57,8 @@ var get_users = new Vue({
 				if (typeof(response.body.success) != 'undefined') {
 					this.users = response.body.users;
 					toastr.success(response.body.success);
+				}else if(typeof(response.body.error) != 'undefined'){
+					toastr.error(response.body.error);
 				}
 			}, response=>{
 				if (response.status == 419) {

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Usuarios;
 use App\Models\Usuarios_perfiles;
-use App\Models\usuarios_perfiles_por_usuarios;
+use App\Models\Usuarios_perfiles_por_usuarios;
 
 class ModifyUserController extends Controller
 {
@@ -14,9 +14,21 @@ class ModifyUserController extends Controller
     	if (!$request->ajax()) {
     		return back();
     	}
+        if (!$this->exists_email($request)) {
+            return ['error' => 'El email ya exíste'];
+        }
     	$this->modify_user($request);
     	$users = $this->get_all_users();
     	return ['success' => 'El usuario se modificó con éxito', 'users' => $users];
+    }
+
+    public function exists_email($request)
+    {
+        if (Usuarios::where('email', $request->email)->first()) {
+            return false;
+        }else{
+            return true;
+        }
     }
 
     public function modify_user($request)
@@ -29,7 +41,7 @@ class ModifyUserController extends Controller
     		'email' => $request->email ? $request->email : null,
     		'activo' => $request->status,
     	]);
-    	usuarios_perfiles_por_usuarios::where('usuario_id', $request->id)->update([
+    	Usuarios_perfiles_por_usuarios::where('usuario_id', $request->id)->update([
     		'perfiles_id' => $request->profile_id,
     	]);
     }
