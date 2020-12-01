@@ -53,7 +53,7 @@ var get_users = new Vue({
 			formData.append('email', this.edit_email ? this.edit_email : '');
 			formData.append('status', this.edit_status);
 			this.$http.post(url, formData).then(function(response){
-				console.log(response.body);
+				console.log(response);
 				if (typeof(response.body.success) != 'undefined') {
 					this.users = response.body.users;
 					toastr.success(response.body.success);
@@ -61,8 +61,9 @@ var get_users = new Vue({
 					toastr.error(response.body.error);
 				}
 			}, response=>{
+				console.log(response);
 				if (response.status == 419) {
-					toastr.error('No se pudo modificar, reinicie la página');
+					toastr.error('reinicie la página');
 				}
 				toastr.error('No se pudo modificar');
 			})

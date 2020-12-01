@@ -21,6 +21,9 @@ use App\Http\Controllers\GetUsersAdminController;
 use App\Http\Controllers\AddNewUserController;
 use App\Http\Controllers\DeleteUserController;
 use App\Http\Controllers\ModifyUserController;
+#panel-admin-companys
+use App\Http\Controllers\CompanysAdminController;
+use App\Http\Controllers\GetCompanysAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,3 +57,6 @@ Route::get('admin/users/get_users_admin_controller', [GetUsersAdminController::c
 Route::post('admin/users/AddNewUserController', [AddNewUserController::class, 'AddNewUserController'])->name('admin.AddNewUserController');
 Route::post('admin/users/DeleteUserController', [DeleteUserController::class, 'DeleteUserController'])->name('admin.DeleteUserController');
 Route::post('admin/users/ModifyUserController', [ModifyUserController::class, 'ModifyUserController'])->name('admin.ModifyUserController');
+//panel-admin-companys
+Route::get('admin/companys', [CompanysAdminController::class, 'index'])->name('admin.companys_index');
+Route::get('admin/users/GetCompanysAdminController', [GetCompanysAdminController::class, 'GetCompanysAdminController'])->name('admin.GetCompanysAdminController');

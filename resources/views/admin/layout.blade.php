@@ -101,6 +101,16 @@
             </a>
           </li>
           @endif
+          @if(in_array('leer_empresa', $permission))
+          <li class="nav-item">
+            <a href="{{ route('admin.companys_index') }}" class="nav-link">
+              <i class="nav-icon fas fa-city"></i>
+              <p>
+                Empresas
+              </p>
+            </a>
+          </li>
+          @endif
         </ul>
       </nav>
     </div>

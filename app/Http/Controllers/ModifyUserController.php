@@ -24,11 +24,15 @@ class ModifyUserController extends Controller
 
     public function exists_email($request)
     {
-        if (Usuarios::where('email', $request->email)->first()) {
-            return false;
-        }else{
-            return true;
+        if ($first_email = Usuarios::select('email')->where('email', $request->email)->value('email')) {
+            $second_email= Usuarios::select('email')->where('email', $request->email)->orderBy('id', 'desc')->value('email');
+            if ($first_email == $second_email) {
+                //pass
+            }else{
+                return false;
+            }
         }
+        return true;
     }
 
     public function modify_user($request)
