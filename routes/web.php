@@ -24,6 +24,7 @@ use App\Http\Controllers\ModifyUserController;
 #panel-admin-companys
 use App\Http\Controllers\CompanysAdminController;
 use App\Http\Controllers\GetCompanysAdminController;
+use App\Http\Controllers\AddNewCompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,3 +61,6 @@ Route::post('admin/users/ModifyUserController', [ModifyUserController::class, 'M
 //panel-admin-companys
 Route::get('admin/companys', [CompanysAdminController::class, 'index'])->name('admin.companys_index');
 Route::get('admin/users/GetCompanysAdminController', [GetCompanysAdminController::class, 'GetCompanysAdminController'])->name('admin.GetCompanysAdminController');
+Route::post('admin/users/PaisController', [AddNewCompanyController::class, 'PaisController'])->name('admin.PaisController');
+Route::post('admin/users/ProvinciaController', [AddNewCompanyController::class, 'ProvinciaController'])->name('admin.ProvinciaController');
+Route::post('admin/users/PartidoController', [AddNewCompanyController::class, 'PartidoController'])->name('admin.PartidoController');
