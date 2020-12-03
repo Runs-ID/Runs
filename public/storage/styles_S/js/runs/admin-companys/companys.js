@@ -15,6 +15,8 @@ var companys = new Vue({
 		select_partido:false,
 		localidad:0,
 		select_localidad:false,
+		//values
+		pais_input:null,
 	},
 	created:function(){
 		this.$http.get(document.getElementById('companys_route').value).then(function(response){
@@ -63,7 +65,6 @@ var companys = new Vue({
 			formData.append('_token', document.getElementById('token_company').value);
 			formData.append('partido', this.partido);
 			this.$http.post(url, formData).then(function(response){
-				console.log(response.body)
 				if (typeof(response.body.success) != 'undefined') {
 					this.all_localidades = response.body.success;
 					this.select_localidad = true;
@@ -109,6 +110,26 @@ var companys = new Vue({
 					this.localidad = 0;
 					break;
 			}
+		},
+		create_new_company_now:function(){
+			let pais = null;
+			let provincia = null;
+			let partido = null;
+			let localidad = null;
+			let direccion = null;
+			let nombre = null;
+			let cuit = null;
+			let observaciones = null;
+			let telefono = null;
+			let email = null;
+			let validate = "";
+
+			//let pais_id_selected = document.getElementById('pais_id_selected');
+			//pais_id_selected.options[pais_id_selected.selectedIndex].text
+			if (this.pais_input != null) {
+				pais = this.pais_input;
+			}
+			console.log(this.pais_input)
 		}
 	}
 })

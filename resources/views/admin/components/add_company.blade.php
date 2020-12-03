@@ -16,13 +16,13 @@
 	      	<div class="row">
 	      		<!--país-->
 					  <label class="col-sm-12">País</label>
-					  <select v-if="select_pais" @change="get_provincia($event, '{{ route('admin.PaisController') }}')" class="form-control col-sm-7">
+					  <select v-if="select_pais" id="pais_id_selected" @change="get_provincia($event, '{{ route('admin.PaisController') }}')" class="form-control col-sm-7">
 					  	<option value="0" selected="selected">Sin seleccionar</option>
 					  	<option v-for="pais in all_paises" :value="pais.id">@{{pais.pais}}</option>
 					  </select>
 					  <button v-if="select_pais" class="btn btn-primary mb-2 col-sm-5" 
 					  @click="state_input_and_select(1)">Crear nuevo país</button>
-					  <input v-if="select_pais == false" type="text" class="form-control col-sm-7" placeholder="argentina">
+					  <input v-if="select_pais == false" v-model="pais_input" type="text" class="form-control col-sm-7" placeholder="argentina">
 					  <button v-if="select_pais == false" class="btn btn-primary mb-2 col-sm-5" @click="select_pais = true">Seleccionar un país</button>
 	      		<!--provincia-->
 					  <label class="col-sm-12">Provincia</label>
@@ -71,7 +71,7 @@
 	      	</div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-	        <button type="button" class="btn btn-primary">Crear empresa</button>
+	        <button type="button" class="btn btn-primary" @click="create_new_company_now">Crear empresa</button>
 	      </div>
 	    </div>
 	  </div>
