@@ -9,6 +9,8 @@ class Provincias extends Model
 {
     use HasFactory;
 
+    protected $guarded = []; 
+
     public function pais()
     {
     	return $this->belongsTo(Paises::class, 'pais_id');

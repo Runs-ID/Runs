@@ -64,3 +64,4 @@ Route::get('admin/users/GetCompanysAdminController', [GetCompanysAdminController
 Route::post('admin/users/PaisController', [AddNewCompanyController::class, 'PaisController'])->name('admin.PaisController');
 Route::post('admin/users/ProvinciaController', [AddNewCompanyController::class, 'ProvinciaController'])->name('admin.ProvinciaController');
 Route::post('admin/users/PartidoController', [AddNewCompanyController::class, 'PartidoController'])->name('admin.PartidoController');
+Route::post('admin/users/AddNewCompanyController', [AddNewCompanyController::class, 'AddNewCompanyController'])->name('admin.AddNewCompanyController');

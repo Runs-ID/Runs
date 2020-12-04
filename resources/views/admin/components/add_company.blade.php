@@ -26,52 +26,52 @@
 					  <button v-if="select_pais == false" class="btn btn-primary mb-2 col-sm-5" @click="select_pais = true">Seleccionar un país</button>
 	      		<!--provincia-->
 					  <label class="col-sm-12">Provincia</label>
-					  <select v-if="select_provincia" @change="get_partido($event, '{{ route('admin.ProvinciaController') }}')" class="form-control col-sm-7">
+					  <select v-if="select_provincia" id="provincia_id_selected" @change="get_partido($event, '{{ route('admin.ProvinciaController') }}')" class="form-control col-sm-7">
 					  	<option value="0" selected="selected">Sin seleccionar</option>
 					  	<option v-for="provincia in all_provincias" :value="provincia.id">@{{provincia.provincia}}</option>
 					  </select>
 					  <button v-if="select_provincia" class="btn btn-primary mb-2 col-sm-5" 
 					  @click="state_input_and_select(2)">Crear nueva provincia</button>
-					  <input v-if="select_provincia == false" type="text" class="form-control col-sm-7" placeholder="buenos aires">
+					  <input v-if="select_provincia == false" v-model="provincia_input" type="text" class="form-control col-sm-7" placeholder="buenos aires">
 					  <button v-if="select_provincia == false" class="btn btn-primary mb-2 col-sm-5" @click="select_provincia = true">Seleccionar una provincia</button>
 	      		<!--partido-->
 					  <label class="col-sm-12">Partido</label>
-					  <select v-if="select_partido" @change="get_localidad($event, '{{ route('admin.PartidoController') }}')" class="form-control col-sm-7">
+					  <select v-if="select_partido" id="partido_id_selected" @change="get_localidad($event, '{{ route('admin.PartidoController') }}')" class="form-control col-sm-7">
 					  	<option value="0" selected="selected">Sin seleccionar</option>
 					  	<option v-for="partido in all_partidos" :value="partido.id">@{{partido.partido}}</option>
 					  </select>
 					  <button v-if="select_partido" class="btn btn-primary mb-2 col-sm-5" 
 					  @click="state_input_and_select(3)">Crear nuevo partido</button>
-					  <input v-if="select_partido == false" type="text" class="form-control col-sm-7" placeholder="la plata">
+					  <input v-if="select_partido == false" v-model="partido_input" type="text" class="form-control col-sm-7" placeholder="la plata">
 					  <button v-if="select_partido == false" class="btn btn-primary mb-2 col-sm-5" @click="select_partido = true">Seleccionar una partido</button>
 	      		<!--localidad-->
 					  <label class="col-sm-12">Localidad</label>
-					  <select v-if="select_localidad" class="form-control col-sm-7">
+					  <select v-if="select_localidad" id="localidad_id_selected" class="form-control col-sm-7">
 					  	<option value="0" selected="selected">Sin seleccionar</option>
 					  	<option v-for="localidad in all_localidades" :value="localidad.id">@{{localidad.localidad}}</option>
 					  </select>
 					  <button v-if="select_localidad" class="btn btn-primary mb-2 col-sm-5" 
 					  @click="state_input_and_select(4)">Crear nuevo localidad</button>
-					  <input v-if="select_localidad == false" type="text" class="form-control col-sm-7" placeholder="alto san lorenzo">
+					  <input v-if="select_localidad == false" v-model="localidad_input" type="text" class="form-control col-sm-7" placeholder="alto san lorenzo">
 					  <button v-if="select_localidad == false" class="btn btn-primary mb-2 col-sm-5" @click="select_localidad = true">Seleccionar una localidad</button>
 					  <!--datos de la empresa-->
 					  <label class="col-sm-12">direccion</label>
-					  <input type="text" class="form-control col-sm-12" placeholder="x entre x y x">
+					  <input type="text" v-model="address_input" class="form-control col-sm-12" placeholder="x entre x y x">
 					  <label class="col-sm-12">nombre</label>
-					  <input type="text" class="form-control col-sm-12" placeholder="runs">
+					  <input type="text" v-model="name_input" class="form-control col-sm-12" placeholder="runs">
 					  <label class="col-sm-12">cuit</label>
-					  <input type="text" class="form-control col-sm-12" placeholder="xx-xxxxxxx-x">
+					  <input type="text" v-model="cuit_input" class="form-control col-sm-12" placeholder="xx-xxxxxxx-x">
 					  <label class="col-sm-12">observaciones</label>
-					  <textarea placeholder="observaciones" class="form-control col-sm-12" maxlength="255"></textarea>
+					  <textarea placeholder="observaciones" v-model="obervations_input" class="form-control col-sm-12" maxlength="255"></textarea>
 					  <label class="col-sm-12">telefono</label>
-					  <input type="text" class="form-control col-sm-12" placeholder="221-xxx-xxxx">
+					  <input type="text" v-model="phone_input" class="form-control col-sm-12" placeholder="221-xxx-xxxx">
 					  <label class="col-sm-12">email</label>
-					  <input type="text" class="form-control col-sm-12" placeholder="runs@runs.com">
+					  <input type="text" v-model="email_input" class="form-control col-sm-12" placeholder="runs@runs.com">
 
 	      	</div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-	        <button type="button" class="btn btn-primary" @click="create_new_company_now">Crear empresa</button>
+	        <button type="button" class="btn btn-primary" @click="create_new_company_now('{{ route('admin.AddNewCompanyController') }}')">Crear empresa</button>
 	      </div>
 	    </div>
 	  </div>

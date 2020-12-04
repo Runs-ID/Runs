@@ -9,6 +9,8 @@ class Empresas extends Model
 {
     use HasFactory;
 
+    protected $guarded = []; 
+
     public function localidad()
     {
     	return $this->belongsTo(Localidades::class, 'localidad_id');

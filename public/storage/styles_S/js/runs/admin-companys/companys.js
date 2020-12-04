@@ -17,6 +17,15 @@ var companys = new Vue({
 		select_localidad:false,
 		//values
 		pais_input:null,
+		provincia_input:null,
+		partido_input:null,
+		localidad_input:null,
+		address_input:null,
+		name_input:null,
+		cuit_input:null,
+		obervations_input:null,
+		phone_input:null,
+		email_input:null,
 	},
 	created:function(){
 		this.$http.get(document.getElementById('companys_route').value).then(function(response){
@@ -87,6 +96,10 @@ var companys = new Vue({
 					this.all_provincias = false;
 					this.all_partidos = false;
 					this.all_localidades = false;
+					this.pais_input=null;
+					this.provincia_input=null;
+					this.partido_input=null;
+					this.localidad_input=null;
 					break;
 				case 2:
 					this.select_provincia = false;
@@ -97,6 +110,9 @@ var companys = new Vue({
 					this.localidad = 0;
 					this.all_partidos = false;
 					this.all_localidades = false;
+					this.provincia_input=null;
+					this.partido_input=null;
+					this.localidad_input=null;
 					break;
 				case 3:
 					this.select_partido = false;
@@ -104,32 +120,113 @@ var companys = new Vue({
 					this.partido = 0;
 					this.localidad = 0;
 					this.all_localidades = false;
+					this.partido_input=null;
+					this.localidad_input=null;
 					break;
 				case 4:
 					this.select_localidad = false;
 					this.localidad = 0;
+					this.localidad_input=null;
 					break;
 			}
 		},
-		create_new_company_now:function(){
+		create_new_company_now:function(url){
 			let pais = null;
 			let provincia = null;
 			let partido = null;
 			let localidad = null;
-			let direccion = null;
-			let nombre = null;
-			let cuit = null;
-			let observaciones = null;
-			let telefono = null;
-			let email = null;
 			let validate = "";
 
 			//let pais_id_selected = document.getElementById('pais_id_selected');
 			//pais_id_selected.options[pais_id_selected.selectedIndex].text
-			if (this.pais_input != null) {
-				pais = this.pais_input;
+			if (this.select_pais) {
+				let pais_id_selected = document.getElementById('pais_id_selected');
+				if (pais_id_selected.options[pais_id_selected.selectedIndex].text != 'Sin seleccionar') {
+					pais = pais_id_selected.options[pais_id_selected.selectedIndex].text;
+				}else{
+					validate = validate + 'País';
+				}
+			}else{
+				if (this.pais_input != null) {
+					pais = this.pais_input; 
+				}else{
+					validate = validate + 'País';
+				}
 			}
-			console.log(this.pais_input)
+
+			if (this.select_provincia) {
+				let provincia_id_selected = document.getElementById('provincia_id_selected');
+				if (provincia_id_selected.options[provincia_id_selected.selectedIndex].text != 'Sin seleccionar') {
+					provincia = provincia_id_selected.options[provincia_id_selected.selectedIndex].text;
+				}else{
+					validate = validate + ' Provincia';
+				}
+			}else{
+				if (this.provincia_input != null) {
+					provincia = this.provincia_input; 
+				}else{
+					validate = validate + ' Provincia';
+				}
+			}
+
+			if (this.select_partido) {
+				let partido_id_selected = document.getElementById('partido_id_selected');
+				if (partido_id_selected.options[partido_id_selected.selectedIndex].text != 'Sin seleccionar') {
+					partido = partido_id_selected.options[partido_id_selected.selectedIndex].text;
+				}else{
+					validate = validate + ' Partido';
+				}
+			}else{
+				if (this.partido_input != null) {
+					partido = this.partido_input; 
+				}else{
+					validate = validate + ' Partido';
+				}
+			}
+
+			if (this.select_localidad) {
+				let localidad_id_selected = document.getElementById('localidad_id_selected');
+				if (localidad_id_selected.options[localidad_id_selected.selectedIndex].text != 'Sin seleccionar') {
+					localidad = localidad_id_selected.options[localidad_id_selected.selectedIndex].text;
+				}else{
+					validate = validate + ' Localidad';
+				}
+			}else{
+				if (this.localidad_input != null) {
+					localidad = this.localidad_input; 
+				}else{
+					validate = validate + ' Localidad';
+				}
+			}
+
+			if (validate.length == 0) {
+				let formData = new FormData();
+				formData.append('_token', document.getElementById('token_company').value);
+				formData.append('pais', pais);
+				formData.append('provincia', provincia);
+				formData.append('partido', partido);
+				formData.append('localidad', localidad);
+				formData.append('address', this.address_input);
+				formData.append('name', this.name_input);
+				formData.append('cuit', this.cuit_input);
+				formData.append('observations', this.obervations_input);
+				formData.append('phone', this.phone_input);
+				formData.append('email', this.email_input);
+				this.$http.post(url, formData).then(function(response){
+					console.log(response);
+					if (typeof(response.body.success) != 'undefined') {
+						this.companys = response.body.companys;
+						this.all_paises = response.body.all_paises;
+					}else if (typeof(response.body.error) != 'undefined'){
+						toastr.error(response.body.error);
+					}
+				}, response=>{
+					console.log(response);
+					toastr.error('No se pudo crear la nueva empresa, hubo un error con el servidor');
+				});
+			}else{
+				toastr.error(validate + ' son obligatorios');
+			}
 		}
 	}
 })
