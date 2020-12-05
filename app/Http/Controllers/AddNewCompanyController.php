@@ -108,7 +108,7 @@ class AddNewCompanyController extends Controller
 
     public function create_provincia($provincia, $id_pais)
     {
-        if ($id = Provincias::select('id')->where('provincia', $provincia)->value('id')) {
+        if ($id = Provincias::select('id')->where('provincia', $provincia)->where('pais_id', $id_pais)->value('id')) {
             return $id;
         }else{
             return Provincias::create([
@@ -120,7 +120,7 @@ class AddNewCompanyController extends Controller
 
     public function create_partido($partido, $id_provincia)
     {
-        if ($id = Partidos::select('id')->where('partido', $partido)->value('id')) {
+        if ($id = Partidos::select('id')->where('partido', $partido)->where('provincia_id', $id_provincia)->value('id')) {
             return $id;
         }else{
             return Partidos::create([
@@ -132,7 +132,7 @@ class AddNewCompanyController extends Controller
 
     public function create_localidad($localidad, $id_partido)
     {
-        if ($id = Localidades::select('id')->where('localidad', $localidad)->value('id')) {
+        if ($id = Localidades::select('id')->where('localidad', $localidad)->where('partido_id', $id_partido)->value('id')) {
             return $id;
         }else{
             return Localidades::create([
