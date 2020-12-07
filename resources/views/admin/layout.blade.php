@@ -111,6 +111,16 @@
             </a>
           </li>
           @endif
+          @if(in_array('leer_empresa_referente', $permission))
+          <li class="nav-item">
+            <a href="{{ route('admin.reference_companys_index') }}" class="nav-link">
+              <i class="nav-icon fas fa-address-card"></i>
+              <p>
+                Empresas referentes
+              </p>
+            </a>
+          </li>
+          @endif
         </ul>
       </nav>
     </div>

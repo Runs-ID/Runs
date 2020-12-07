@@ -81,7 +81,8 @@ class AddNewCompanyController extends Controller
         }
         $this->add_new_company_now($request);
         $all_companys = $this->get_all_companys();
-        return ['success' => $all_companys];
+        $all_paises = $this->get_all_paises();
+        return ['companys' => $all_companys, 'all_paises', $all_paises];
 
 
     }

@@ -25,6 +25,10 @@ use App\Http\Controllers\ModifyUserController;
 use App\Http\Controllers\CompanysAdminController;
 use App\Http\Controllers\GetCompanysAdminController;
 use App\Http\Controllers\AddNewCompanyController;
+#panel-admin-reference-companys
+use App\Http\Controllers\ReferenceCompanysController;
+use App\Http\Controllers\GetReferenceCompanysController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -65,3 +69,8 @@ Route::post('admin/users/PaisController', [AddNewCompanyController::class, 'Pais
 Route::post('admin/users/ProvinciaController', [AddNewCompanyController::class, 'ProvinciaController'])->name('admin.ProvinciaController');
 Route::post('admin/users/PartidoController', [AddNewCompanyController::class, 'PartidoController'])->name('admin.PartidoController');
 Route::post('admin/users/AddNewCompanyController', [AddNewCompanyController::class, 'AddNewCompanyController'])->name('admin.AddNewCompanyController');
+//panel-admin-reference_companys
+Route::get('admin/reference_companys', [ReferenceCompanysController::class, 'index'])->name('admin.reference_companys_index');
+Route::get('admin/users/GetReferenceCompanysController', [GetReferenceCompanysController::class, 'GetReferenceCompanysController'])->name('admin.GetReferenceCompanysController');
+
+

@@ -213,15 +213,13 @@ var companys = new Vue({
 				formData.append('phone', this.phone_input);
 				formData.append('email', this.email_input);
 				this.$http.post(url, formData).then(function(response){
-					console.log(response);
-					if (typeof(response.body.success) != 'undefined') {
+					if (typeof(response.body.companys) != 'undefined') {
 						this.companys = response.body.companys;
 						this.all_paises = response.body.all_paises;
 					}else if (typeof(response.body.error) != 'undefined'){
 						toastr.error(response.body.error);
 					}
 				}, response=>{
-					console.log(response);
 					toastr.error('No se pudo crear la nueva empresa, hubo un error con el servidor');
 				});
 			}else{
