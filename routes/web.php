@@ -28,6 +28,8 @@ use App\Http\Controllers\AddNewCompanyController;
 #panel-admin-reference-companys
 use App\Http\Controllers\ReferenceCompanysController;
 use App\Http\Controllers\GetReferenceCompanysController;
+use App\Http\Controllers\AddNewReferenceCompanyController;
+use App\Http\Controllers\ModifyReferenceCompanyController;
 
 
 /*
@@ -72,5 +74,7 @@ Route::post('admin/users/AddNewCompanyController', [AddNewCompanyController::cla
 //panel-admin-reference_companys
 Route::get('admin/reference_companys', [ReferenceCompanysController::class, 'index'])->name('admin.reference_companys_index');
 Route::get('admin/users/GetReferenceCompanysController', [GetReferenceCompanysController::class, 'GetReferenceCompanysController'])->name('admin.GetReferenceCompanysController');
+Route::post('admin/users/AddNewReferenceCompanyController', [AddNewReferenceCompanyController::class, 'AddNewReferenceCompanyController'])->name('admin.AddNewReferenceCompanyController');
+Route::post('admin/users/ModifyReferenceCompanyController', [ModifyReferenceCompanyController::class, 'ModifyReferenceCompanyController'])->name('admin.ModifyReferenceCompanyController');
 
 

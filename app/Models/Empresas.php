@@ -15,4 +15,9 @@ class Empresas extends Model
     {
     	return $this->belongsTo(Localidades::class, 'localidad_id');
     }
+
+    public function referentes()
+    {
+    	return $this->hasMany(Empresas_referentes::class, 'empresa_id');
+    }
 }

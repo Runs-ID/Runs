@@ -23,23 +23,30 @@
                 <th>Nombres</th>
                 <th>Apellidos</th>
                 <th>Teléfono</th>
-                <th>Horario contacto</th>
-                <th>Observaciones</th>
+                <th>Email</th>
                 <th>Activo</th>
               </tr>
               </thead>
               <tbody>
                 <form>
                 <input type="hidden" value="{{ csrf_token() }}" id="token_reference_companys">
-                <tr v-for="reference in all_reference_companys">
-                  <td>@{{reference.empresa}}</td>
+                <tr v-for="(reference, i) in all_reference_companys">
+                  <td>@{{reference.empresa.nombre}}</td>
                   <td>@{{reference.nombres}}</td>
                   <td>@{{reference.apellidos}}</td>
                   <td>@{{reference.telefono}}</td>
-                  <td class="text-truncate">@{{reference.horario_contacto}}</td>
-                  <td>@{{reference.observaciones}}</td>
+                  <td class="text-truncate">@{{reference.email}}</td>
                   <td v-if="reference.activo == 1" class="text-success">Activo</td>
                   <td v-if="reference.activo == 0" class="text-danger">Inactivo</td>
+                  <td>
+                    @if(in_array('leer_empresa_referente', $permission))
+                      @include('admin.components.read_reference_companys')
+                    @endif
+                    @if(in_array('editar_empresa_referente', $permission))
+                      @include('admin.components.edit_reference_companys')
+                    @endif
+                    <button class="btn btn-danger"><i class="fas fa-minus"></i></button>
+                  </td>
                 </tr>
                 </form>
               </tbody>
