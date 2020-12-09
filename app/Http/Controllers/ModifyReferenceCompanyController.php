@@ -13,9 +13,9 @@ class ModifyReferenceCompanyController extends Controller
     	if (!$request->ajax()) {
     		return back();
     	}
-    	if ($this->exists_email($request)) {
-    		return ['error' => 'El email ingresado ya exíste'];
-    	}
+        if (!$this->exists_email($request)) {
+            return ['error' => 'El email ya exíste'];
+        }
     	$this->modify_reference_company($request);
     	return ['success' => true, 'references_companys' => $this->get_reference_companys(), 'all_companys' => $this->all_companys()];
     }
@@ -23,13 +23,14 @@ class ModifyReferenceCompanyController extends Controller
     public function exists_email($request)
     {
     	if ($id_first = Empresas_referentes::select('id')->where('email', $request->email)->value('id')) {
-    		$id_second = Empresas_referentes::select('id')->where('email', $request->email)->first()->orderBy('desc');
-    		if ($id_first == $request->id && $id_second == $request->id) {
-    			return true;
+    		$id_second = Empresas_referentes::select('id')->where('email', $request->email)->orderBy('id','desc')->value('id');
+    		if ($id_first == $request->id && $id_first == $id_second) {
+    			//pass
     		}else{
     			return false;
     		}
     	}
+    	return true;
     }
 
     public function modify_reference_company($request)

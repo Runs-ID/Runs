@@ -165,6 +165,8 @@ var referece_companys = new Vue({
 					}else if (typeof(response.body.error) != 'undefined') {
 						toastr.error(response.body.error);
 					}
+				}, response=>{
+					toastr.error('No se pudo realizar el cambio, reinicie la página y reintentelo');
 				})
 			}else{
 				toastr.error(validate + ' Están vacíos o son incorrectos');
