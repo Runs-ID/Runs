@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Usuarios;
 use App\Models\Usuarios_perfiles;
-use App\Models\usuarios_perfiles_por_usuarios;
+use App\Models\Usuarios_perfiles_por_usuarios;
 
 class ModifyUserController extends Controller
 {
@@ -14,22 +14,38 @@ class ModifyUserController extends Controller
     	if (!$request->ajax()) {
     		return back();
     	}
+        if (!$this->exists_email($request)) {
+            return ['error' => 'El email ya exíste'];
+        }
     	$this->modify_user($request);
     	$users = $this->get_all_users();
     	return ['success' => 'El usuario se modificó con éxito', 'users' => $users];
     }
 
+    public function exists_email($request)
+    {
+        if ($first_email = Usuarios::select('email')->where('email', $request->email)->value('email')) {
+            $second_email= Usuarios::select('email')->where('email', $request->email)->orderBy('id', 'desc')->value('email');
+            if ($first_email == $second_email) {
+                //pass
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+
     public function modify_user($request)
     {
     	Usuarios::where('id', $request->id)->update([
-    		'nombres' => $request->names ? $request->names : 'Sin completar',
-    		'apellidos' => $request->last_names ? $request->last_names : 'Sin completar',
-    		'dni' => $request->dni ? $request->dni : 'Sin completar',
-    		'telefono' => $request->phone ? $request->phone : 'Sin completar',
+    		'nombres' => $request->names ? $request->names : null,
+    		'apellidos' => $request->last_names ? $request->last_names : null,
+    		'dni' => $request->dni ? $request->dni : null,
+    		'telefono' => $request->phone ? $request->phone : null,
     		'email' => $request->email ? $request->email : null,
     		'activo' => $request->status,
     	]);
-    	usuarios_perfiles_por_usuarios::where('usuario_id', $request->id)->update([
+    	Usuarios_perfiles_por_usuarios::where('usuario_id', $request->id)->update([
     		'perfiles_id' => $request->profile_id,
     	]);
     }

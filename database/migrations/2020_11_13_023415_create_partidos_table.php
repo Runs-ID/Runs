@@ -20,7 +20,7 @@ class CreatePartidosTable extends Migration
             $table->boolean('activo')->default('1');
             $table->timestamps();
 
-            $table->foreign('provincia_id')->references('id')->on('provincias');
+            $table->foreign('provincia_id')->references('id')->on('provincias')->onDelete('cascade')->onUpdate('cascade');;
         });
     }
 

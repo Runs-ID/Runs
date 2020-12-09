@@ -20,7 +20,7 @@ class CreateProvinciasTable extends Migration
             $table->boolean('activo')->default('1');
             $table->timestamps();
 
-            $table->foreign('pais_id')->references('id')->on('paises');
+            $table->foreign('pais_id')->references('id')->on('paises')->onDelete('cascade')->onUpdate('cascade');;
         });
     }
 

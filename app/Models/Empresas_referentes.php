@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Empresas_referentes extends Model
 {
-    use HasFactory;
+
+    protected $guarded = []; 
+    
+
+    public function empresa()
+    {
+    	return $this->belongsTo(Empresas::class, 'empresa_id');
+    }
 }

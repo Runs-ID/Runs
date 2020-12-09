@@ -33,7 +33,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{ route('admin.LogoutController') }}">
           Cerrar sesión
         </a>
       </li>
@@ -97,6 +97,26 @@
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Usuarios
+              </p>
+            </a>
+          </li>
+          @endif
+          @if(in_array('leer_empresa', $permission))
+          <li class="nav-item">
+            <a href="{{ route('admin.companys_index') }}" class="nav-link">
+              <i class="nav-icon fas fa-city"></i>
+              <p>
+                Empresas
+              </p>
+            </a>
+          </li>
+          @endif
+          @if(in_array('leer_empresa_referente', $permission))
+          <li class="nav-item">
+            <a href="{{ route('admin.reference_companys_index') }}" class="nav-link">
+              <i class="nav-icon fas fa-address-card"></i>
+              <p>
+                Empresas referentes
               </p>
             </a>
           </li>

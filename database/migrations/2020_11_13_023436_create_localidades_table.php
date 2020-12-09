@@ -20,7 +20,7 @@ class CreateLocalidadesTable extends Migration
             $table->boolean('activo')->default('1');
             $table->timestamps();
 
-            $table->foreign('partido_id')->references('id')->on('partidos');
+            $table->foreign('partido_id')->references('id')->on('partidos')->onDelete('cascade')->onUpdate('cascade');;
         });
     }
 
